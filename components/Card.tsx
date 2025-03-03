@@ -6,7 +6,7 @@ import { CalendarDays, MapPin, User } from 'lucide-react'
 const Card = ({ event }: { event: Event }) => {
   const { imgSrc, slug, title, description, date, location, speakers } = event
   return (
-    <div className="md max-w-[544px] p-4 md:w-1/2">
+    <div className="p-4">
       <div
         className={`${
           imgSrc && 'h-full'
@@ -19,7 +19,7 @@ const Card = ({ event }: { event: Event }) => {
             <Image
               alt={title}
               src={imgSrc}
-              className="object-cover object-center md:h-36 lg:h-56"
+              className="aspect-4/5 object-cover object-center"
               width={544}
               height={306}
             />

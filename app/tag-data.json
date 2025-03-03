@@ -1,1 +1,6 @@
-{}
+{
+  "next-js": 1,
+  "tailwind": 1,
+  "guide": 1,
+  "feature": 1
+}
