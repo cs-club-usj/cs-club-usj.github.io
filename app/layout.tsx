@@ -67,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${space_grotesk.variable} scroll-smooth`}
       suppressHydrationWarning
     >
+      <link rel="icon" sizes="256x256" href={`${basePath}/static/favicons/favicon.ico`} />
       <link
         rel="apple-touch-icon"
         sizes="76x76"
