@@ -5,6 +5,9 @@ import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
+import Image from './Image'
+
+const SVE_LINK = 'https://www.usj.edu.lb/universite/institutions.php?getinst=498'
 
 const Header = () => {
   let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10'
@@ -14,20 +17,29 @@ const Header = () => {
 
   return (
     <header className={headerClass}>
-      <Link href="/" aria-label={siteMetadata.headerTitle}>
-        <div className="flex items-center justify-between">
-          <div className="mr-3">
+      <div className="flex items-center justify-between">
+        <div className="mr-3 flex flex-row items-center space-x-2">
+          <Link href="/" aria-label={siteMetadata.headerTitle}>
             <Logo />
-          </div>
-          {typeof siteMetadata.headerTitle === 'string' ? (
-            <div className="hidden h-6 text-2xl font-semibold xl:block">
-              {siteMetadata.headerTitle}
-            </div>
-          ) : (
-            siteMetadata.headerTitle
-          )}
+          </Link>
+          <Link href={SVE_LINK}>
+            <Image
+              src={'/static/images/sve.png'}
+              alt={'Logo SVE'}
+              width={180}
+              height={128}
+              className="block object-contain dark:hidden"
+            />
+            <Image
+              src={'/static/images/sve-dark.png'}
+              alt={'Logo SVE'}
+              width={180}
+              height={128}
+              className="hidden object-contain dark:block"
+            />
+          </Link>
         </div>
-      </Link>
+      </div>
       <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
         <div className="no-scrollbar hidden max-w-40 items-center space-x-4 overflow-x-auto pr-2 sm:flex sm:space-x-6 md:max-w-72 lg:max-w-96">
           {headerNavLinks
