@@ -46,15 +46,16 @@ const Card = ({ event }: { event: Event }) => {
           </h2>
           <div>
             <p className="flex flex-row items-center gap-2 text-sm">
-              <CalendarDays /> {date}
+              <CalendarDays className="min-h-6 min-w-6" /> {date}
             </p>
           </div>
           <p className="flex flex-row items-center gap-2 text-sm">
-            <MapPin />
+            <MapPin className="min-h-6 min-w-6" />
             {location}
           </p>
           <p className="flex flex-row items-center gap-2 text-sm">
-            <User /> {speakers}
+            <User className="min-h-6 min-w-6" />
+            {speakers}
           </p>
           {/* <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p> */}
           {/* {slug && (
