@@ -1,19 +1,39 @@
+'use client'
+
 import Image from '@/components/Image'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
 const MAX_DISPLAY = 5
 
 const REGISTRATION_LINK =
   'https://forms.office.com/Pages/ResponsePage.aspx?id=NGnZKuVDwkGXYfM1_iFMw3XHbG_Qm39JsdCpCi0bIXpUQkFLM0ZMVDRXMEE2RENPRFlUQlJXWUpRNi4u&origin=Invitation&channel=0'
 
+const images = [
+  '/static/images/talk2.jpg',
+  '/static/images/mohammad-darsa.jpg',
+  '/static/images/talk.jpeg',
+  '/static/images/salim-slim.jpeg',
+]
+
 export default function Home({ posts }) {
+  const [emblaRef] = useEmblaCarousel(
+    {
+      loop: true,
+      align: 'center',
+      skipSnaps: false,
+    },
+    [Autoplay({ delay: 3000 })]
+  )
+
   return (
     <div className="flex flex-col gap-y-10">
       <div className="flex flex-col items-center justify-between space-y-20 md:flex-row md:space-y-0">
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 md:w-1/2">
           <h1 className="text-balance text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl lg:text-5xl">
             Empowering Tech Leaders of Tomorrow
           </h1>
@@ -24,13 +44,24 @@ export default function Home({ posts }) {
             Register Today!
           </Link>
         </div>
-        <Image
-          alt="Talk"
-          src={'/static/images/talk.jpeg'}
-          className="h-full w-full object-cover object-center shadow-[10px_10px_0px_0px_primary-500] shadow-primary-500 md:w-1/2"
-          width={500}
-          height={500}
-        />
+        <div
+          className="aspect-[4/3] w-full overflow-hidden shadow-[10px_10px_0px_0px_primary-500] shadow-primary-500 md:w-1/2"
+          ref={emblaRef}
+        >
+          <div className="flex h-full w-full">
+            {images.map((image, index) => (
+              <div key={index} className="w-full flex-shrink-0">
+                <Image
+                  src={image}
+                  alt={`Slide ${index + 1}`}
+                  className="h-full w-full object-cover"
+                  width={1920}
+                  height={1080}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
