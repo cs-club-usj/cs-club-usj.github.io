@@ -1,5 +1,5 @@
 import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
-import { writeFileSync } from 'fs'
+import fs, { writeFileSync } from 'fs'
 import readingTime from 'reading-time'
 import { slug } from 'github-slugger'
 import path from 'path'
@@ -93,6 +93,36 @@ function createSearchIndex(allBlogs) {
   }
 }
 
+export const Event = defineDocumentType(() => ({
+  name: 'Event',
+  filePathPattern: 'events/**/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    slug: { type: 'string', required: true },
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
+    flyer: { type: 'string', required: true },
+    location: { type: 'string', required: true },
+    speaker: { type: 'string', required: true },
+  },
+  computedFields: {
+    ...computedFields,
+    images: {
+      type: 'list',
+      resolve: (event) => {
+        const imagesDir = path.join(process.cwd(), 'public/static/images/events', event.slug)
+        if (fs.existsSync(imagesDir)) {
+          return fs
+            .readdirSync(imagesDir)
+            .filter((file) => /\.(jpg|jpeg|png|gif|webp)$/.test(file))
+            .map((file) => `/static/images/events/${event.slug}/${file}`)
+        }
+        return []
+      },
+    },
+  },
+}))
+
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
   filePathPattern: 'blog/**/*.mdx',
@@ -149,7 +179,7 @@ export const Authors = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog, Authors],
+  documentTypes: [Blog, Authors, Event],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [

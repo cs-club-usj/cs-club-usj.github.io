@@ -1,32 +1,33 @@
-import { Event } from '@/data/projectsData'
+import { Event } from 'contentlayer/generated'
 import Image from './Image'
 import Link from './Link'
 import { CalendarDays, MapPin, User } from 'lucide-react'
+import { CoreContent } from 'pliny/utils/contentlayer'
 
-const Card = ({ event }: { event: Event }) => {
-  const { imgSrc, slug, title, description, date, location, speakers } = event
+const Card = ({ event }: { event: CoreContent<Event> }) => {
+  const { flyer, slug, title, date, location, speaker } = event
   return (
     <div className="p-4">
       <div
         className={`${
-          imgSrc && 'h-full'
+          flyer && 'h-full'
         }  overflow-hidden rounded-md border-2 border-gray-200 border-opacity-60 dark:border-gray-700`}
       >
-        {imgSrc &&
+        {flyer &&
           (slug ? (
-            // <Link href={slug} aria-label={`Link to ${title}`}>
-            // </Link>
-            <Image
-              alt={title}
-              src={imgSrc}
-              className="aspect-4/5 object-cover object-center"
-              width={544}
-              height={306}
-            />
+            <Link href={`/events/${slug}`} aria-label={`Link to ${title}`}>
+              <Image
+                alt={title}
+                src={flyer}
+                className="aspect-4/5 object-cover object-center"
+                width={544}
+                height={306}
+              />
+            </Link>
           ) : (
             <Image
               alt={title}
-              src={imgSrc}
+              src={flyer}
               className="object-cover object-center md:h-36 lg:h-56"
               width={544}
               height={306}
@@ -35,18 +36,21 @@ const Card = ({ event }: { event: Event }) => {
 
         <div className="flex flex-col gap-3 p-6">
           <h2 className="mb-3 text-2xl font-bold leading-8 tracking-tight">
-            {title}
-            {/* {slug ? (
-              <Link href={slug} aria-label={`Link to ${title}`}>
+            {slug ? (
+              <Link
+                href={`/events/${slug}`}
+                aria-label={`Link to ${title}`}
+                className="transition-colors hover:text-primary-600"
+              >
                 {title}
               </Link>
             ) : (
               title
-            )} */}
+            )}
           </h2>
           <div>
             <p className="flex flex-row items-center gap-2 text-sm">
-              <CalendarDays className="min-h-6 min-w-6" /> {date}
+              <CalendarDays className="min-h-6 min-w-6" /> {new Date(date).toDateString()}
             </p>
           </div>
           <p className="flex flex-row items-center gap-2 text-sm">
@@ -55,18 +59,17 @@ const Card = ({ event }: { event: Event }) => {
           </p>
           <p className="flex flex-row items-center gap-2 text-sm">
             <User className="min-h-6 min-w-6" />
-            {speakers}
+            {speaker}
           </p>
-          {/* <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p> */}
-          {/* {slug && (
+          {slug && (
             <Link
-              href={slug}
+              href={`/events/${slug}`}
               className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
               aria-label={`Link to ${title}`}
             >
-              Learn more &rarr;
+              View gallery &rarr;
             </Link>
-          )} */}
+          )}
         </div>
       </div>
     </div>

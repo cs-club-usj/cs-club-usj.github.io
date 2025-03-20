@@ -1,10 +1,13 @@
-import eventsData from '@/data/projectsData'
 import Card from '@/components/Card'
 import { genPageMetadata } from 'app/seo'
+import { allEvents } from 'contentlayer/generated'
+import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 
 export const metadata = genPageMetadata({ title: 'Events' })
 
 export default function Events() {
+  const events = allCoreContent(sortPosts(allEvents, 'date'))
+
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -18,7 +21,7 @@ export default function Events() {
         </div>
         <div className="container py-12">
           <div className="-m-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {eventsData.map((e) => (
+            {events.map((e) => (
               <Card key={e.title} event={e} />
             ))}
           </div>
