@@ -2,7 +2,7 @@ import 'css/prism.css'
 import 'katex/dist/katex.css'
 
 import { sortPosts, allCoreContent } from 'pliny/utils/contentlayer'
-import { allBlogs, allEvents } from 'contentlayer/generated'
+import { allEvents } from 'contentlayer/generated'
 import type { Event } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
 import { Gallery } from '@/components/Gallery'
@@ -14,7 +14,7 @@ import { Gallery } from '@/components/Gallery'
 // }
 
 export const generateStaticParams = async () => {
-  return allBlogs.map((p) => ({ slug: p.slug.split('/').map((name) => decodeURI(name)) }))
+  return allEvents.map((p) => ({ slug: p.slug.split('/').map((name) => decodeURI(name)) }))
 }
 
 export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
