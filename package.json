@@ -30,6 +30,7 @@
     "next": "15.1.4",
     "next-contentlayer2": "0.5.3",
     "next-themes": "^0.3.0",
+    "plaiceholder": "^3.0.0",
     "pliny": "0.4.0",
     "postcss": "^8.4.24",
     "react": "rc",

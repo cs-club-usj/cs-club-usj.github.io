@@ -13,14 +13,7 @@ const MAX_DISPLAY = 5
 const REGISTRATION_LINK =
   'https://forms.office.com/Pages/ResponsePage.aspx?id=NGnZKuVDwkGXYfM1_iFMw3XHbG_Qm39JsdCpCi0bIXpUQkFLM0ZMVDRXMEE2RENPRFlUQlJXWUpRNi4u&origin=Invitation&channel=0'
 
-const images = [
-  '/static/images/talk2.jpg',
-  '/static/images/mohammad-darsa.jpg',
-  '/static/images/talk.jpeg',
-  '/static/images/salim-slim.jpeg',
-]
-
-export default function Home({ posts }) {
+export default function Home({ posts, images }) {
   const [emblaRef] = useEmblaCarousel(
     {
       loop: true,
@@ -49,14 +42,16 @@ export default function Home({ posts }) {
           ref={emblaRef}
         >
           <div className="flex h-full w-full">
-            {images.map((image, index) => (
+            {images.map(({ src, blurDataURL }, index) => (
               <div key={index} className="w-full flex-shrink-0">
                 <Image
-                  src={image}
+                  src={src}
                   alt={`Slide ${index + 1}`}
                   className="h-full w-full object-cover"
                   width={1920}
                   height={1080}
+                  placeholder="blur"
+                  blurDataURL={blurDataURL}
                 />
               </div>
             ))}

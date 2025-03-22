@@ -9887,6 +9887,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"plaiceholder@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "plaiceholder@npm:3.0.0"
+  peerDependencies:
+    sharp: ">= 0.30.6"
+  checksum: 783072104ff1ca388f7662048a901d02d04ba0884442400d8142ff60ec3c39c40baf80729f0187ca9f057eac8c8382a86d57eb61a08bf40b0d2bf7c7762a71e2
+  languageName: node
+  linkType: hard
+
 "pliny@npm:0.4.0":
   version: 0.4.0
   resolution: "pliny@npm:0.4.0"
@@ -11961,6 +11970,7 @@ react@rc:
     next: 15.1.4
     next-contentlayer2: 0.5.3
     next-themes: ^0.3.0
+    plaiceholder: ^3.0.0
     pliny: 0.4.0
     postcss: ^8.4.24
     prettier: ^3.0.0

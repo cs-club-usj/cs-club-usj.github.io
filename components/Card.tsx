@@ -4,8 +4,17 @@ import Link from './Link'
 import { CalendarDays, MapPin, User } from 'lucide-react'
 import { CoreContent } from 'pliny/utils/contentlayer'
 
-const Card = ({ event }: { event: CoreContent<Event> }) => {
+import fs from 'fs'
+import path from 'path'
+import { getPlaiceholder } from 'plaiceholder'
+
+const Card = async ({ event }: { event: CoreContent<Event> }) => {
   const { flyer, slug, title, date, location, speaker } = event
+
+  const filePath = path.join(process.cwd(), 'public', flyer)
+  const buffer = fs.readFileSync(filePath)
+  const { base64: flyerBlur } = await getPlaiceholder(buffer)
+
   return (
     <div className="p-4">
       <div
@@ -19,18 +28,22 @@ const Card = ({ event }: { event: CoreContent<Event> }) => {
               <Image
                 alt={title}
                 src={flyer}
-                className="aspect-4/5 object-cover object-center"
-                width={544}
-                height={306}
+                placeholder="blur"
+                blurDataURL={flyerBlur}
+                className="aspect-4/5 w-full object-cover object-center"
+                width={1080}
+                height={1350}
               />
             </Link>
           ) : (
             <Image
               alt={title}
               src={flyer}
-              className="object-cover object-center md:h-36 lg:h-56"
-              width={544}
-              height={306}
+              placeholder="blur"
+              blurDataURL={flyerBlur}
+              className="w-full object-cover object-center md:h-36 lg:h-56"
+              width={1080}
+              height={1350}
             />
           ))}
 

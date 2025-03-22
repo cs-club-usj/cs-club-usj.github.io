@@ -5,19 +5,21 @@ import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 
-export function Gallery({ images }: { images: string[] }) {
+export function Gallery({ images }: { images: { src: string; blurDataURL: string }[] }) {
   const [index, setIndex] = useState(-1)
 
   return (
     <div className="columns-1 space-y-4 py-10 sm:columns-2 md:py-20 lg:columns-3">
-      {images.map((src, i) => (
+      {images.map(({ src, blurDataURL }, i) => (
         <div key={src} className="break-inside-avoid">
           <Image
             src={src}
             alt="gallery-photo"
             className="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-95" //
-            width={544}
-            height={306}
+            width={2400}
+            height={1600}
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             onClick={() => setIndex(i)}
           />
         </div>
@@ -27,7 +29,7 @@ export function Gallery({ images }: { images: string[] }) {
         open={index >= 0}
         index={index}
         close={() => setIndex(-1)}
-        slides={images.map((src) => ({ src }))}
+        slides={images.map(({ src }) => ({ src }))}
       />
     </div>
   )
