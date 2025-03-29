@@ -2,12 +2,20 @@ import type { Authors } from 'contentlayer/generated'
 import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
 
+import fs from 'fs'
+import path from 'path'
+import { getPlaiceholder } from 'plaiceholder'
+
 interface Props {
   content: Omit<Authors, '_id' | '_raw' | 'body'>
 }
 
-export default function AuthorLayout({ content }: Props) {
+export default async function AuthorLayout({ content }: Props) {
   const { name, avatar, occupation, company, email, twitter, bluesky, linkedin, github } = content
+
+  const filePath = path.join(process.cwd(), 'public', avatar!)
+  const buffer = fs.readFileSync(filePath)
+  const { base64 } = await getPlaiceholder(buffer)
 
   return (
     <div className="flex flex-col items-center space-x-2 pt-8">
@@ -17,6 +25,8 @@ export default function AuthorLayout({ content }: Props) {
           alt="avatar"
           width={192}
           height={192}
+          placeholder="blur"
+          blurDataURL={base64}
           className="h-48 w-48 rounded-full"
         />
       )}
