@@ -1,27 +1,20 @@
-'use client'
-
-import Image from '@/components/Image'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
-import useEmblaCarousel from 'embla-carousel-react'
-import Autoplay from 'embla-carousel-autoplay'
+import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
+import { allEvents } from 'contentlayer/generated'
+import Card from '@/components/Card'
+import Carousel from '@/components/Carousel'
 
-const MAX_DISPLAY = 5
+const MAX_BLOG_DISPLAY = 5
+const MAX_EVENTS_DISPLAY = 5
 
 const REGISTRATION_LINK =
   'https://forms.office.com/Pages/ResponsePage.aspx?id=NGnZKuVDwkGXYfM1_iFMw3XHbG_Qm39JsdCpCi0bIXpUQkFLM0ZMVDRXMEE2RENPRFlUQlJXWUpRNi4u&origin=Invitation&channel=0'
 
 export default function Home({ posts, images }) {
-  const [emblaRef] = useEmblaCarousel(
-    {
-      loop: true,
-      align: 'center',
-      skipSnaps: false,
-    },
-    [Autoplay({ delay: 3000 })]
-  )
+  const events = allCoreContent(sortPosts(allEvents, 'date'))
 
   return (
     <div className="flex flex-col gap-y-10">
@@ -37,26 +30,18 @@ export default function Home({ posts, images }) {
             Register Today!
           </Link>
         </div>
-        <div
-          className="aspect-[4/3] w-full overflow-hidden shadow-[10px_10px_0px_0px_primary-500] shadow-primary-500 md:w-1/2"
-          ref={emblaRef}
-        >
-          <div className="flex h-full w-full">
-            {images.map(({ src, blurDataURL }, index) => (
-              <div key={index} className="w-full flex-shrink-0">
-                <Image
-                  src={src}
-                  alt={`Slide ${index + 1}`}
-                  className="h-full w-full object-cover"
-                  width={1920}
-                  height={1080}
-                  placeholder="blur"
-                  blurDataURL={blurDataURL}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <Carousel images={images} />
+      </div>
+      <div className="space-y-2 divide-y divide-gray-200 pb-8 pt-6 dark:divide-gray-700 md:space-y-5">
+        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          Events
+        </h1>
+        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+          {!events.length && 'No events found.'}
+          {events.slice(0, MAX_EVENTS_DISPLAY).map((event) => (
+            <Card event={event} key={event.slug} isLandscape />
+          ))}
+        </ul>
       </div>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
@@ -69,7 +54,7 @@ export default function Home({ posts, images }) {
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
-          {posts.slice(0, MAX_DISPLAY).map((post) => {
+          {posts.slice(0, MAX_BLOG_DISPLAY).map((post) => {
             const { slug, date, title, summary, tags } = post
             return (
               <li key={slug} className="py-12">
@@ -119,7 +104,7 @@ export default function Home({ posts, images }) {
           })}
         </ul>
       </div>
-      {posts.length > MAX_DISPLAY && (
+      {posts.length > MAX_BLOG_DISPLAY && (
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
             href="/blog"

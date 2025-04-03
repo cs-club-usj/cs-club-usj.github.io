@@ -104,6 +104,8 @@ export const Event = defineDocumentType(() => ({
     flyer: { type: 'string', required: true },
     location: { type: 'string', required: true },
     speaker: { type: 'string', required: true },
+    upcoming: { type: 'boolean', required: false, default: false },
+    more: { type: 'string', required: true },
   },
   computedFields: {
     ...computedFields,

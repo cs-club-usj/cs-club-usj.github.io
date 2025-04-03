@@ -8,8 +8,14 @@ import fs from 'fs'
 import path from 'path'
 import { getPlaiceholder } from 'plaiceholder'
 
-const Card = async ({ event }: { event: CoreContent<Event> }) => {
-  const { flyer, slug, title, date, location, speaker } = event
+const Card = async ({
+  event,
+  isLandscape = false,
+}: {
+  event: CoreContent<Event>
+  isLandscape?: boolean
+}) => {
+  const { flyer, slug, title, date, location, speaker, upcoming, more } = event
 
   const filePath = path.join(process.cwd(), 'public', flyer)
   const buffer = fs.readFileSync(filePath)
@@ -20,36 +26,41 @@ const Card = async ({ event }: { event: CoreContent<Event> }) => {
       <div
         className={`${
           flyer && 'h-full'
-        }  overflow-hidden rounded-md border-2 border-gray-200 border-opacity-60 dark:border-gray-700`}
+        } flex overflow-hidden rounded-md border-2 border-gray-200 border-opacity-60 dark:border-gray-700 ${isLandscape ? 'flex-col md:flex-row' : 'flex-col'}`}
       >
-        {flyer &&
-          (slug ? (
-            <Link href={`/events/${slug}`} aria-label={`Link to ${title}`}>
-              <Image
-                alt={title}
-                src={flyer}
-                placeholder="blur"
-                blurDataURL={flyerBlur}
-                className="aspect-4/5 w-full object-cover object-center"
-                width={1080}
-                height={1350}
-              />
-            </Link>
-          ) : (
+        {flyer && !upcoming ? (
+          <Link
+            href={`/events/${slug}`}
+            aria-label={`Link to ${title}`}
+            className={`${isLandscape ? 'w-full md:w-1/4' : 'w-full'}`}
+          >
             <Image
               alt={title}
               src={flyer}
               placeholder="blur"
               blurDataURL={flyerBlur}
-              className="w-full object-cover object-center md:h-36 lg:h-56"
+              className={`h-full w-full object-cover object-center`}
               width={1080}
               height={1350}
             />
-          ))}
+          </Link>
+        ) : (
+          <Image
+            alt={title}
+            src={flyer}
+            placeholder="blur"
+            blurDataURL={flyerBlur}
+            className={`${isLandscape ? 'w-full md:w-1/4' : 'w-full'} object-cover object-center`}
+            width={1080}
+            height={1350}
+          />
+        )}
 
-        <div className="flex flex-col gap-3 p-6">
-          <h2 className="mb-3 text-2xl font-bold leading-8 tracking-tight">
-            {slug ? (
+        <div
+          className={`flex flex-col gap-3 p-6 ${isLandscape ? 'w-full md:w-3/4 md:justify-center' : 'w-full'}`}
+        >
+          <h2 className="mb-3 flex flex-col gap-3 text-2xl font-bold leading-8 tracking-tight">
+            {slug && !upcoming ? (
               <Link
                 href={`/events/${slug}`}
                 aria-label={`Link to ${title}`}
@@ -59,6 +70,11 @@ const Card = async ({ event }: { event: CoreContent<Event> }) => {
               </Link>
             ) : (
               title
+            )}
+            {upcoming && (
+              <span className="w-fit rounded-md bg-primary-500 px-2 py-1 text-sm font-semibold text-white">
+                Upcoming
+              </span>
             )}
           </h2>
           <div>
@@ -74,7 +90,7 @@ const Card = async ({ event }: { event: CoreContent<Event> }) => {
             <User className="min-h-6 min-w-6" />
             {speaker}
           </p>
-          {slug && (
+          {slug && !upcoming && (
             <Link
               href={`/events/${slug}`}
               className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
@@ -83,6 +99,13 @@ const Card = async ({ event }: { event: CoreContent<Event> }) => {
               View gallery &rarr;
             </Link>
           )}
+          <Link
+            href={`/blog/${more}`}
+            className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+            aria-label={`Link to ${title}`}
+          >
+            Read more &rarr;
+          </Link>
         </div>
       </div>
     </div>
