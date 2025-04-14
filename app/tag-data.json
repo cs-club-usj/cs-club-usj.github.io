@@ -1,9 +1,9 @@
 {
   "talks": 3,
   "software-engineering": 2,
+  "game-design": 1,
+  "entrepreneurship": 1,
   "quantum-computing": 1,
   "microsoft": 1,
-  "data-engineering": 1,
-  "game-design": 1,
-  "entrepreneurship": 1
+  "data-engineering": 1
 }
