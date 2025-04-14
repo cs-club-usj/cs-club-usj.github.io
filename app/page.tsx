@@ -8,6 +8,9 @@ import { getPlaiceholder } from 'plaiceholder'
 
 export default async function Page() {
   const images = [
+    '/static/images/events/day-in-the-life-murex/IMG_8634.jpg',
+    '/static/images/events/day-in-the-life-murex/IMG_8622.jpg',
+    '/static/images/events/day-in-the-life-murex/IMG_8629.jpg',
     '/static/images/talk2.jpg',
     '/static/images/mohammad-darsa.jpg',
     '/static/images/talk.jpeg',
