@@ -116,7 +116,7 @@ export const Event = defineDocumentType(() => ({
         if (fs.existsSync(imagesDir)) {
           return fs
             .readdirSync(imagesDir)
-            .filter((file) => /\.(jpg|jpeg|png|gif|webp)$/.test(file))
+            .filter((file) => /\.(JPG|jpg|jpeg|png|gif|webp)$/.test(file))
             .map((file) => `/static/images/events/${event.slug}/${file}`)
         }
         return []
