@@ -103,7 +103,7 @@ export const Event = defineDocumentType(() => ({
     date: { type: 'date', required: true },
     flyer: { type: 'string', required: true },
     location: { type: 'string', required: true },
-    speaker: { type: 'string', required: true },
+    speaker: { type: 'string', required: false },
     upcoming: { type: 'boolean', required: false, default: false },
     more: { type: 'string', required: true },
   },

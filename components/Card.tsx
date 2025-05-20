@@ -86,10 +86,12 @@ const Card = async ({
             <MapPin className="min-h-6 min-w-6" />
             {location}
           </p>
-          <p className="flex flex-row items-center gap-2 text-sm">
-            <User className="min-h-6 min-w-6" />
-            {speaker}
-          </p>
+          {speaker && (
+            <p className="flex flex-row items-center gap-2 text-sm">
+              <User className="min-h-6 min-w-6" />
+              {speaker}
+            </p>
+          )}
           {slug && !upcoming && (
             <Link
               href={`/events/${slug}`}
