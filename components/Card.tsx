@@ -57,7 +57,7 @@ const Card = async ({
         )}
 
         <div
-          className={`flex flex-col gap-3 p-6 ${isLandscape ? 'w-full md:w-3/4 md:justify-center' : 'w-full'}`}
+          className={`flex h-full flex-col gap-3 p-6 ${isLandscape ? 'w-full md:w-3/4 md:justify-center' : 'w-full'}`}
         >
           <h2 className="mb-3 flex flex-col gap-3 text-2xl font-bold leading-8 tracking-tight">
             {slug && !upcoming ? (
@@ -82,32 +82,34 @@ const Card = async ({
               <CalendarDays className="min-h-6 min-w-6" /> {new Date(date).toDateString()}
             </p>
           </div>
-          <p className="flex flex-row items-center gap-2 text-sm">
+          <p className="flex flex-row items-start gap-2 text-sm">
             <MapPin className="min-h-6 min-w-6" />
             {location}
           </p>
           {speaker && (
-            <p className="flex flex-row items-center gap-2 text-sm">
+            <p className="flex flex-row items-start gap-2 text-sm">
               <User className="min-h-6 min-w-6" />
               {speaker}
             </p>
           )}
-          {slug && !upcoming && (
+          <div className="mt-auto flex flex-col gap-2 justify-self-end">
+            {slug && !upcoming && (
+              <Link
+                href={`/events/${slug}`}
+                className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                aria-label={`Link to ${title}`}
+              >
+                View gallery &rarr;
+              </Link>
+            )}
             <Link
-              href={`/events/${slug}`}
+              href={`/blog/${more}`}
               className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
               aria-label={`Link to ${title}`}
             >
-              View gallery &rarr;
+              Read more &rarr;
             </Link>
-          )}
-          <Link
-            href={`/blog/${more}`}
-            className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-            aria-label={`Link to ${title}`}
-          >
-            Read more &rarr;
-          </Link>
+          </div>
         </div>
       </div>
     </div>
