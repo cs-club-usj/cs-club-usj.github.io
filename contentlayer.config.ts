@@ -166,8 +166,9 @@ export const Authors = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     name: { type: 'string', required: true },
-    avatar: { type: 'string' },
-    occupation: { type: 'string' },
+    avatar: { type: 'string', required: true },
+    about: { type: 'string', required: true },
+    role: { type: 'string', required: true },
     company: { type: 'string' },
     email: { type: 'string' },
     twitter: { type: 'string' },
@@ -175,6 +176,7 @@ export const Authors = defineDocumentType(() => ({
     linkedin: { type: 'string' },
     github: { type: 'string' },
     layout: { type: 'string' },
+    boardYear: { type: 'string', required: true },
   },
   computedFields,
 }))

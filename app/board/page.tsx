@@ -7,12 +7,12 @@ import { genPageMetadata } from 'app/seo'
 export const metadata = genPageMetadata({ title: 'Board' })
 
 export default function Page() {
-  const president = allAuthors.find((p) => p.occupation === 'President') as Authors
-  const vp = allAuthors.find((p) => p.occupation === 'Vice-President') as Authors
-  const treasurer = allAuthors.find((p) => p.occupation === 'Treasurer') as Authors
-  const secretary = allAuthors.find((p) => p.occupation === 'Secretary') as Authors
+  const president = allAuthors.find((p) => p.role === 'President') as Authors
+  const vp = allAuthors.find((p) => p.role === 'Vice-President') as Authors
+  const treasurer = allAuthors.find((p) => p.role === 'Treasurer') as Authors
+  const secretary = allAuthors.find((p) => p.role === 'Secretary') as Authors
 
-  const board = allAuthors.filter((p) => p.occupation === 'Board Member')
+  const board = allAuthors.filter((p) => p.role === 'Board Member')
 
   return (
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
