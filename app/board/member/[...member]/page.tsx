@@ -40,6 +40,10 @@ export async function generateMetadata(props: {
   }
 }
 
+export const generateStaticParams = async () => {
+  return allAuthors.map((p) => ({ slug: p.slug.split('/').map((name) => decodeURI(name)) }))
+}
+
 export default async function Page(props: { params: Promise<{ member: string[] }> }) {
   const params = await props.params
   const member = decodeURI(params.member.join('/'))
