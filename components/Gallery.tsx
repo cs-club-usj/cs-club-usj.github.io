@@ -4,12 +4,21 @@ import Image from './Image'
 import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
+import Masonry from 'react-masonry-css'
 
 export function Gallery({ images }: { images: { src: string; blurDataURL: string }[] }) {
   const [index, setIndex] = useState(-1)
 
   return (
-    <div className="columns-1 space-y-4 py-10 sm:columns-2 md:py-20 lg:columns-3">
+    <Masonry
+      breakpointCols={{
+        default: 3,
+        1024: 2,
+        640: 1,
+      }}
+      className="flex w-auto gap-4 py-10 md:py-20"
+      columnClassName="flex flex-col gap-4"
+    >
       {images.map(({ src, blurDataURL }, i) => (
         <div key={src} className="break-inside-avoid">
           <Image
@@ -31,6 +40,6 @@ export function Gallery({ images }: { images: { src: string; blurDataURL: string
         close={() => setIndex(-1)}
         slides={images.map(({ src }) => ({ src }))}
       />
-    </div>
+    </Masonry>
   )
 }

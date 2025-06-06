@@ -10241,6 +10241,15 @@ react-dom@rc:
   languageName: node
   linkType: hard
 
+"react-masonry-css@npm:^1.0.16":
+  version: 1.0.16
+  resolution: "react-masonry-css@npm:1.0.16"
+  peerDependencies:
+    react: ">=16.0.0"
+  checksum: 3fbffac31535b049b3117b952b112dce31f8e2a84031191a926ad21b782cf20d07761fb90134dded339498be40360e0864af6bc0696f1606c7a4cb5a6aa1ad18
+  languageName: node
+  linkType: hard
+
 "react-virtual@npm:^2.8.2":
   version: 2.10.4
   resolution: "react-virtual@npm:2.10.4"
@@ -11977,6 +11986,7 @@ react@rc:
     prettier-plugin-tailwindcss: ^0.5.11
     react: rc
     react-dom: rc
+    react-masonry-css: ^1.0.16
     reading-time: 1.5.0
     rehype-autolink-headings: ^7.1.0
     rehype-citation: ^2.0.0

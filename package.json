@@ -35,6 +35,7 @@
     "postcss": "^8.4.24",
     "react": "rc",
     "react-dom": "rc",
+    "react-masonry-css": "^1.0.16",
     "reading-time": "1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-citation": "^2.0.0",
