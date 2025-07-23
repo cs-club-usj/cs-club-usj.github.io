@@ -1,12 +1,20 @@
 import { Authors, Boards, allAuthors, allBoards } from 'contentlayer/generated'
 import AuthorLayout from '@/layouts/AuthorLayout'
 import { coreContent } from 'pliny/utils/contentlayer'
-import { genPageMetadata } from 'app/seo'
+import { Metadata } from 'next'
 import Link from 'next/link'
 
-export const metadata = genPageMetadata({ title: 'Meet the Board' })
+export async function generateMetadata(props: {
+  params: Promise<{ year: string }>
+}): Promise<Metadata | undefined> {
+  const params = await props.params
+  const year = decodeURI(params.year)
+  const board = allBoards.find((b) => b.year === year) as Boards
 
-const CURRENT_YEAR = '2025-2026'
+  return {
+    title: `Board ${board.year}`,
+  }
+}
 
 export const generateStaticParams = async () => {
   return allBoards.map((b) => ({ year: [b.year] }))
@@ -26,9 +34,10 @@ function resolveBoardMembers(board: Boards) {
     .filter(Boolean) as (Authors & { role: string })[]
 }
 
-export default async function Page() {
+export default async function Page(props: { params: Promise<{ year: string }> }) {
+  const { year } = await props.params
   const board = allBoards.find((p) => {
-    return p.year === CURRENT_YEAR
+    return p.year === year[0]
   }) as Boards
   const members = resolveBoardMembers(board)
 
