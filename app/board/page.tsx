@@ -32,10 +32,10 @@ export default async function Page() {
   }) as Boards
   const members = resolveBoardMembers(board)
 
-  const president = members.find((p) => p.role === 'President') as Authors
-  const vp = members.find((p) => p.role === 'Vice-President') as Authors
-  const treasurer = members.find((p) => p.role === 'Treasurer') as Authors
-  const secretary = members.find((p) => p.role === 'Secretary') as Authors
+  const president = members.find((p) => p.role === 'President')
+  const vp = members.find((p) => p.role === 'Vice-President')
+  const treasurer = members.find((p) => p.role === 'Treasurer')
+  const secretary = members.find((p) => p.role === 'Secretary')
 
   const rest = members.filter((p) => p.role === 'Board Member')
 
@@ -60,12 +60,12 @@ export default async function Page() {
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="flex flex-col items-center gap-y-10">
           <div className="flex flex-row flex-wrap justify-center gap-x-10">
-            <AuthorLayout content={coreContent(president)} />
-            <AuthorLayout content={coreContent(vp)} />
-            <AuthorLayout content={coreContent(secretary)} />
-            <AuthorLayout content={coreContent(treasurer)} />
+            <AuthorLayout content={coreContent(president as Authors)} role={president!.role} />
+            <AuthorLayout content={coreContent(vp as Authors)} role={vp!.role} />
+            <AuthorLayout content={coreContent(secretary as Authors)} role={secretary!.role} />
+            <AuthorLayout content={coreContent(treasurer as Authors)} role={treasurer!.role} />
             {rest.map((member) => (
-              <AuthorLayout key={member._id} content={coreContent(member)} />
+              <AuthorLayout key={member._id} content={coreContent(member)} role={member!.role} />
             ))}
           </div>
         </div>

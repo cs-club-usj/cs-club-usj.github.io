@@ -9,10 +9,11 @@ import Link from 'next/link'
 
 interface Props {
   content: Omit<Authors, '_id' | '_raw' | 'body'>
+  role: string
 }
 
-export default async function AuthorLayout({ content }: Props) {
-  const { name, avatar, role, company, email, twitter, bluesky, linkedin, github, slug } = content
+export default async function AuthorLayout({ content, role }: Props) {
+  const { name, avatar, company, email, twitter, bluesky, linkedin, github, slug } = content
 
   const filePath = path.join(process.cwd(), 'public', avatar!)
   const buffer = fs.readFileSync(filePath)
