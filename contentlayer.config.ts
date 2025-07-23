@@ -168,7 +168,6 @@ export const Authors = defineDocumentType(() => ({
     name: { type: 'string', required: true },
     avatar: { type: 'string', required: true },
     about: { type: 'string', required: true },
-    role: { type: 'string', required: true },
     company: { type: 'string' },
     email: { type: 'string' },
     twitter: { type: 'string' },
@@ -176,14 +175,24 @@ export const Authors = defineDocumentType(() => ({
     linkedin: { type: 'string' },
     github: { type: 'string' },
     layout: { type: 'string' },
-    boardYear: { type: 'string', required: true },
+  },
+  computedFields,
+}))
+
+export const Boards = defineDocumentType(() => ({
+  name: 'Boards',
+  filePathPattern: 'boards/**/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    year: { type: 'string', required: true },
+    members: { type: 'list', of: { type: 'json' }, default: [], required: true },
   },
   computedFields,
 }))
 
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog, Authors, Event],
+  documentTypes: [Blog, Authors, Event, Boards],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [
