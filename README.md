@@ -1,4 +1,4 @@
-![cs-club-banner](/public/static/images/twitter-card.png)
+![cs-club-banner](/public/static/images/banner.png)
 
 # The Club's Official Website
 
