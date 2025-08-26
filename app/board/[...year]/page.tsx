@@ -52,18 +52,17 @@ export default async function Page(props: { params: Promise<{ year: string }> })
     <div className="space-y-8">
       <div className="flex flex-col items-center">
         <div className="flex flex-row flex-wrap gap-10">
-          <Link
-            href={'/board/2024-2025'}
-            className={`transition-all hover:text-primary-600 hover:underline ${board.year === '2024-2025' ? 'text-primary-600' : ''}`}
-          >
-            <h3 className="pb-2 pt-4 text-3xl font-bold leading-8 tracking-tight">2024-2025</h3>
-          </Link>
-          <Link
-            href={'/board/2025-2026'}
-            className={`transition-all hover:text-primary-600 hover:underline ${board.year === '2025-2026' ? 'text-primary-600' : ''}`}
-          >
-            <h3 className="pb-2 pt-4 text-3xl font-bold leading-8 tracking-tight">2025-2026</h3>
-          </Link>
+          {allBoards.map((b) => (
+            <Link
+              key={b.year}
+              href={`/board/${b.year}`}
+              className={`transition-colors hover:text-primary-600 ${
+                board.year === b.year ? 'text-primary-600 cursor-default' : ''
+              }`}
+            >
+              <h3 className="pb-2 pt-4 text-3xl font-bold leading-8 tracking-tight">{b.year}</h3>
+            </Link>
+          ))}
         </div>
       </div>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
