@@ -6,7 +6,7 @@ import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allEvents } from 'contentlayer/generated'
 import Card from '@/components/Card'
 import Carousel from '@/components/Carousel'
-import ArrowRight from '@/components/arrows/ArrowRight'
+import Arrow from '@/components/Arrow'
 
 const MAX_BLOG_DISPLAY = 5
 const MAX_EVENTS_DISPLAY = 5
@@ -100,7 +100,7 @@ export default function Home({ posts, images }) {
                       className="px-3 py-2 group w-full items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
                       aria-label={`Read more: "${title}"`}
                     >
-                      <ArrowRight>Read more</ArrowRight>
+                      <Arrow direction="right">Read more</Arrow>
                     </Link>
                   </div>
                 </article>
@@ -117,7 +117,7 @@ export default function Home({ posts, images }) {
             className="px-4 py-2 group flex items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
             aria-label="All posts"
           >
-            <ArrowRight>All Posts</ArrowRight>
+            <Arrow direction="right">All Posts</Arrow>
           </Link>
         </div>
       )}
