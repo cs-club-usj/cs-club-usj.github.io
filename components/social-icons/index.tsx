@@ -1,31 +1,33 @@
 import {
-  Mail,
-  Github,
-  Facebook,
+  Email,
+  Whatsapp,
+  Instagram,
+  Threads,
   Youtube,
-  Linkedin,
+  Facebook,
   Twitter,
   X,
-  Mastodon,
-  Threads,
-  Instagram,
-  Medium,
+  Linkedin,
   Bluesky,
+  Github,
+  Medium,
+  Mastodon
 } from './icons'
 
 const components = {
-  mail: Mail,
-  github: Github,
-  facebook: Facebook,
+  email: Email,
+  whatsapp: Whatsapp,
+  instagram: Instagram,
+  threads: Threads,
   youtube: Youtube,
-  linkedin: Linkedin,
+  facebook: Facebook,
   twitter: Twitter,
   x: X,
-  mastodon: Mastodon,
-  threads: Threads,
-  instagram: Instagram,
-  medium: Medium,
+  linkedin: Linkedin,
   bluesky: Bluesky,
+  github: Github,
+  medium: Medium,
+  mastodon: Mastodon
 }
 
 type SocialIconProps = {
@@ -37,7 +39,7 @@ type SocialIconProps = {
 const SocialIcon = ({ kind, href, size = 8 }: SocialIconProps) => {
   if (
     !href ||
-    (kind === 'mail' && !/^mailto:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(href))
+    (kind === 'email' && !/^mailto:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(href))
   )
     return null
 
@@ -52,7 +54,7 @@ const SocialIcon = ({ kind, href, size = 8 }: SocialIconProps) => {
     >
       <span className="sr-only">{kind}</span>
       <SocialSvg
-        className={`fill-current text-gray-700 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-400 h-${size} w-${size}`}
+        className={`fill-current text-gray-900 hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-500 transition-colors h-${size} w-${size}`}
       />
     </a>
   )
