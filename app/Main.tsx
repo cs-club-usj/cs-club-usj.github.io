@@ -77,7 +77,7 @@ export default function Home({ posts, images }) {
                       <h2 className="text-2xl font-bold leading-8 tracking-tight">
                         <Link
                           href={`/blog/${slug}`}
-                          className="transition-colors text-gray-900 dark:text-gray-100 hover:text-primary-500 dark:hover:text-primary-500"
+                          className="text-gray-900 hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-500 transition-colors"
                         >
                           {title}
                         </Link>
