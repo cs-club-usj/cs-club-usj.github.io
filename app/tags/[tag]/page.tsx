@@ -9,14 +9,22 @@ import { Metadata } from 'next'
 
 const POSTS_PER_PAGE = 5
 
+function formatTag(tag: string): string {
+  return tag
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, (char) => char.toUpperCase())
+}
+
 export async function generateMetadata(props: {
   params: Promise<{ tag: string }>
 }): Promise<Metadata> {
   const params = await props.params
   const tag = decodeURI(params.tag)
+  const formattedTag = formatTag(tag)
+
   return genPageMetadata({
-    title: tag + ' Posts',
-    description: `${siteMetadata.title} ${tag} tagged content`,
+    title: `${formattedTag} Posts`,
+    description: `${siteMetadata.title} ${formattedTag} tagged content`,
     alternates: {
       canonical: './',
       types: {
