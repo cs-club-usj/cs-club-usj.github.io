@@ -4,7 +4,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allEvents } from 'contentlayer/generated'
-import Card from '@/components/Card'
+import MainCard from '@/components/MainCard'
 import Carousel from '@/components/Carousel'
 import Arrow from '@/components/Arrow'
 
@@ -44,7 +44,7 @@ export default function Home({ posts, images }) {
         <ul>
             {!events.length && 'No events found.'}
             {events.slice(0, MAX_EVENTS_DISPLAY).map((event) => (
-              <Card event={event} key={event.slug} isLandscape />
+              <MainCard event={event} key={event.slug} isLandscape />
             ))}
           </ul>
         </div>

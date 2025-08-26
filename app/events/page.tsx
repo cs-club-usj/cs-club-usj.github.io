@@ -1,4 +1,4 @@
-import Card from '@/components/Card'
+import EventsCard from '@/components/EventsCard'
 import { genPageMetadata } from 'app/seo'
 import { allEvents } from 'contentlayer/generated'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
@@ -34,7 +34,7 @@ export default function Events() {
           <div className="container py-12">
             <div className="-m-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {upcoming.map((e) => (
-                <Card key={e.title} event={e} />
+                <EventsCard key={e.title} event={e} />
               ))}
             </div>
           </div>
@@ -51,7 +51,7 @@ export default function Events() {
           <div className="container py-12">
             <div className="-m-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {past.map((e) => (
-                <Card key={e.title} event={e} />
+                <EventsCard key={e.title} event={e} />
               ))}
             </div>
           </div>

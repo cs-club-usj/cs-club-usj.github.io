@@ -7,8 +7,9 @@ import { CoreContent } from 'pliny/utils/contentlayer'
 import fs from 'fs'
 import path from 'path'
 import { getPlaiceholder } from 'plaiceholder'
+import Arrow from './Arrow'
 
-const Card = async ({
+const MainCard = async ({
   event,
   isLandscape = false,
 }: {
@@ -22,7 +23,7 @@ const Card = async ({
   const { base64: flyerBlur } = await getPlaiceholder(buffer)
 
   return (
-    <div className="p-4">
+    <div className="py-2">
       <div
         className={`${
           flyer && 'h-full'
@@ -30,7 +31,7 @@ const Card = async ({
       >
         {flyer && !upcoming ? (
           <Link
-            href={`/events/${slug}`}
+            href={`/blog/${slug}`}
             aria-label={`Link to ${title}`}
             className={`${isLandscape ? 'w-full md:w-1/4' : 'w-full'}`}
           >
@@ -57,14 +58,14 @@ const Card = async ({
         )}
 
         <div
-          className={`flex h-full flex-col gap-3 p-6 ${isLandscape ? 'w-full md:w-3/4 md:justify-center' : 'w-full'}`}
+          className={`flex flex-col gap-3 p-6 ${isLandscape ? 'w-full md:w-3/4 md:justify-center' : 'w-full'}`}
         >
-          <h2 className="mb-3 flex flex-col gap-3 text-2xl font-bold leading-8 tracking-tight">
+          <h2 className="flex flex-col gap-3 text-2xl font-bold leading-8 tracking-tight">
             {slug && !upcoming ? (
               <Link
-                href={`/events/${slug}`}
+                href={`/blog/${slug}`}
                 aria-label={`Link to ${title}`}
-                className="transition-colors hover:text-primary-600"
+                className="text-gray-900 hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-500 transition-colors"
               >
                 {title}
               </Link>
@@ -77,38 +78,38 @@ const Card = async ({
               </span>
             )}
           </h2>
-          <div>
-            <p className="flex flex-row items-center gap-2 text-sm">
+          <div className="flex flex-col justify-center h-full text-sm gap-2">
+            <p className="flex flex-row items-center gap-2 whitespace-pre-line">
               <CalendarDays className="min-h-6 min-w-6" /> {new Date(date).toDateString()}
             </p>
-          </div>
-          <p className="flex flex-row items-start gap-2 text-sm">
-            <MapPin className="min-h-6 min-w-6" />
-            {location}
-          </p>
-          {speaker && (
-            <p className="flex flex-row items-start gap-2 text-sm">
-              <User className="min-h-6 min-w-6" />
-              {speaker}
+            <p className="flex flex-row items-center gap-2 whitespace-pre-line">
+              <MapPin className="min-h-6 min-w-6" />
+              {location}
             </p>
-          )}
-          <div className="mt-auto flex flex-col gap-2 justify-self-end">
+            {speaker && (
+              <p className="flex flex-row items-center gap-2 whitespace-pre-line">
+                <User className="min-h-6 min-w-6" />
+                {speaker}
+              </p>
+            )}
+          </div>
+          <div className="mt-auto flex flex-col gap-2">
+            <Link
+              href={`/blog/${more}`}
+              className="text-base font-medium leading-6 text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600 transition-colors"
+              aria-label={`Link to ${title}`}
+            >
+              <Arrow direction="right">Read more</Arrow>
+            </Link>
             {slug && !upcoming && (
               <Link
                 href={`/events/${slug}`}
-                className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                className="text-base font-medium leading-6 text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600 transition-colors"
                 aria-label={`Link to ${title}`}
               >
-                View gallery &rarr;
+                <Arrow direction="right">View gallery</Arrow>
               </Link>
             )}
-            <Link
-              href={`/blog/${more}`}
-              className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-              aria-label={`Link to ${title}`}
-            >
-              Read more &rarr;
-            </Link>
           </div>
         </div>
       </div>
@@ -116,4 +117,4 @@ const Card = async ({
   )
 }
 
-export default Card
+export default MainCard
