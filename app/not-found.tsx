@@ -1,4 +1,7 @@
 import Link from '@/components/Link'
+import { genPageMetadata } from 'app/seo'
+
+export const metadata = genPageMetadata({ title: '404' })
 
 export default function NotFound() {
   return (
