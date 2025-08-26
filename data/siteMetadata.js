@@ -3,7 +3,9 @@ const siteMetadata = {
   title: 'Computer Science Club USJ',
   author: 'Ghady Youssef',
   headerTitle: 'Computer Science Club USJ',
-  description: 'Get to know more about the Computer Science Club. Check out the latest tech news.',
+  description: 'Empowering Tech Leaders of Tomorrow',
+  descriptionEvents: 'Join us for exciting events, workshops, and tech talks',
+  descriptionLatest: 'Updates on events, tech news, and more',
   language: 'en-us',
   theme: 'light', // system, dark or light
   siteUrl: 'https://cs-club-usj.github.io',

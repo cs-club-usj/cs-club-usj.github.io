@@ -16,7 +16,7 @@ const CustomLink = ({ href, ...rest }: LinkProps & AnchorHTMLAttributes<HTMLAnch
   }
 
   return (
-    <a className="break-words" target="_blank" rel="noopener noreferrer" href={href} {...rest} />
+    <a className="break-words transition-colors" target="_blank" rel="noopener noreferrer" href={href} {...rest} />
   )
 }
 
