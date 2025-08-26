@@ -9,6 +9,7 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
+import Arrow from '@/components/Arrow'
 
 interface PaginationProps {
   totalPages: number
@@ -35,31 +36,53 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
 
   return (
     <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-      <nav className="flex justify-between">
+      <nav className="flex justify-between items-center">
         {!prevPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
-            Previous
+          <button className="cursor-not-allowed disabled:opacity-50 px-3 py-2 group flex items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white" disabled={!prevPage}>
+            <Arrow direction="left">Previous</Arrow>
           </button>
         )}
         {prevPage && (
           <Link
+            className="px-3 py-2 group flex items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
             href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
             rel="prev"
           >
-            Previous
+            <Arrow direction="left">Previous</Arrow>
           </Link>
         )}
-        <span>
-          {currentPage} of {totalPages}
-        </span>
+        <div className="flex items-center justify-center gap-2">
+          {Array.from({ length: totalPages }, (_, i) => {
+            const page = i + 1
+            const isActive = page === currentPage
+
+            return (
+              <Link
+                key={page}
+                href={page === 1 ? `/${basePath}/` : `/${basePath}/page/${page}`}
+                className={`px-3 py-1 flex items-center justify-center rounded-md font-medium transition-colors ${
+                  isActive
+                    ? "bg-primary-600 text-white"
+                    : "opacity-50 bg-primary-600 text-white hover:opacity-100 transition-opacity"
+                }`}
+              >
+                {page}
+              </Link>
+            )
+          })}
+        </div>
         {!nextPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
-            Next
+          <button className="cursor-not-allowed disabled:opacity-50 px-3 py-2 group flex items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white" disabled={!nextPage}>
+            <Arrow direction="right">Next</Arrow>
           </button>
         )}
         {nextPage && (
-          <Link href={`/${basePath}/page/${currentPage + 1}`} rel="next">
-            Next
+          <Link
+            className="px-3 py-2 group flex items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
+            href={`/${basePath}/page/${currentPage + 1}`}
+            rel="next"
+          >
+            <Arrow direction="right">Next</Arrow>
           </Link>
         )}
       </nav>
@@ -89,30 +112,33 @@ export default function ListLayoutWithTags({
           </h1>
         </div>
         <div className="flex sm:space-x-24">
-          <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
+          <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded-md border border-gray-200 dark:border-gray-700 sm:flex">
             <div className="px-6 py-4">
-              {pathname.startsWith('/blog') ? (
-                <h3 className="font-bold uppercase text-primary-500">All Posts</h3>
-              ) : (
-                <Link
-                  href={`/blog`}
-                  className="font-bold uppercase text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
-                >
-                  All Posts
-                </Link>
-              )}
+              <div className="space-y-3">
+                {pathname.startsWith('/blog') ? (
+                  <h3 className="font-bold uppercase text-primary-600">All Posts</h3>
+                ) : (
+                  <Link
+                    href={`/blog`}
+                    className="font-bold uppercase text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-500"
+                  >
+                    All Posts
+                  </Link>
+                )}
+                <h3 className="font-bold uppercase text-gray-700 dark:text-gray-300 cursor-default">Browse by Tags:</h3>
+              </div>
               <ul>
                 {sortedTags.map((t) => {
                   return (
                     <li key={t} className="my-3">
                       {decodeURI(pathname.split('/tags/')[1]) === slug(t) ? (
-                        <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-primary-500">
+                        <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-primary-600 cursor-default">
                           {`${t} (${tagCounts[t]})`}
                         </h3>
                       ) : (
                         <Link
                           href={`/tags/${slug(t)}`}
-                          className="px-3 py-2 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
+                          className="px-3 py-2 text-sm font-medium uppercase text-gray-500 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-500"
                           aria-label={`View posts tagged ${t}`}
                         >
                           {`${t} (${tagCounts[t]})`}
@@ -133,7 +159,7 @@ export default function ListLayoutWithTags({
                     <article className="flex flex-col space-y-2 xl:space-y-0">
                       <dl>
                         <dt className="sr-only">Published on</dt>
-                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        <dd className="mb-2 text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                           <time dateTime={date} suppressHydrationWarning>
                             {formatDate(date, siteMetadata.locale)}
                           </time>
@@ -142,7 +168,10 @@ export default function ListLayoutWithTags({
                       <div className="space-y-3">
                         <div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                            <Link
+                              href={`/${path}`}
+                              className="transition-colors text-gray-900 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-600"
+                            >
                               {title}
                             </Link>
                           </h2>
@@ -150,7 +179,7 @@ export default function ListLayoutWithTags({
                             {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                           </div>
                         </div>
-                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                        <div className="prose max-w-none text-gray-500 dark:text-gray-400 text-justify">
                           {summary}
                         </div>
                       </div>
