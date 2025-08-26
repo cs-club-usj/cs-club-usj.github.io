@@ -1,15 +1,13 @@
 'use client'
 
-import siteMetadata from '@/data/siteMetadata'
 import { useEffect, useState } from 'react'
 
-const ScrollTop = () => {
+const ScrolltoTop = () => {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
     const handleWindowScroll = () => {
-      if (window.scrollY > 50) setShow(true)
-      else setShow(false)
+      setShow(window.scrollY > 50)
     }
 
     window.addEventListener('scroll', handleWindowScroll)
@@ -17,16 +15,19 @@ const ScrollTop = () => {
   }, [])
 
   const handleScrollTop = () => {
-    window.scrollTo({ top: 0 })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
   return (
     <div
-      className={`fixed bottom-8 right-8 hidden flex-col gap-3 ${show ? 'md:flex' : 'md:hidden'}`}
+      className={`fixed bottom-8 right-8 flex flex-col gap-3 transition-opacity duration-300 ${
+        show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      }`}
     >
       <button
         aria-label="Scroll To Top"
         onClick={handleScrollTop}
-        className="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600"
+        className="rounded-md p-2 bg-primary-600 hover:bg-primary-700 text-white transition-colors"
       >
         <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
           <path
@@ -40,4 +41,4 @@ const ScrollTop = () => {
   )
 }
 
-export default ScrollTop
+export default ScrolltoTop
