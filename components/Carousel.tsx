@@ -13,7 +13,7 @@ function Carousel({ images }: { images: { src: string; blurDataURL: string }[] }
       align: 'center',
       skipSnaps: false,
     },
-    [Autoplay({ delay: 3000 })]
+    [Autoplay({ delay: 4000 })]
   )
 
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -49,7 +49,7 @@ function Carousel({ images }: { images: { src: string; blurDataURL: string }[] }
   return (
     <div className="relative w-full md:w-1/2">
       <div
-        className="aspect-[4/3] overflow-hidden shadow-[10px_10px_0px_0px_primary-500] shadow-primary-500"
+        className="aspect-[4/3] overflow-hidden shadow-[10px_10px_0px_0px_primary-500] shadow-primary-600"
         ref={emblaRef}
       >
         <div className="flex h-full w-full">
@@ -68,21 +68,19 @@ function Carousel({ images }: { images: { src: string; blurDataURL: string }[] }
           ))}
         </div>
       </div>
-
-      {/* Arrows */}
       <button
         onClick={scrollPrev}
-        className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-100"
+        className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-1 transition-colors hover:bg-white/70"
         aria-label="Previous Slide"
       >
-        <ChevronLeft className="h-5 w-5 text-black" />
+        <ChevronLeft className="h-4 w-4 stroke-[3] text-primary-600" />
       </button>
       <button
         onClick={scrollNext}
-        className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-100"
+        className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-1 transition-colors hover:bg-white/70"
         aria-label="Next Slide"
       >
-        <ChevronRight className="h-5 w-5 text-black" />
+        <ChevronRight className="h-4 w-4 stroke-[3] text-primary-600" />
       </button>
 
       <div className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 gap-2">
@@ -90,9 +88,9 @@ function Carousel({ images }: { images: { src: string; blurDataURL: string }[] }
           <button
             key={index}
             onClick={() => scrollTo(index)}
-            className={`h-2 w-2 rounded-full ${
-              index === selectedIndex ? 'bg-primary-500' : 'bg-gray-300'
-            }`}
+            className={`h-2 w-2 rounded-full
+              ${index === selectedIndex ? 'bg-primary-600 cursor-default' : 'bg-white/90 transition-colors hover:bg-white/60'}
+            `}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
