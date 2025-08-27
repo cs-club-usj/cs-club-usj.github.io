@@ -14,8 +14,8 @@ export default async function Page() {
     '/static/images/events/ai-talk-monty/IMG_8652.JPG',
     '/static/images/events/day-in-the-life-murex/IMG_8622.jpg',
     '/static/images/events/day-in-the-life-murex/IMG_8629.jpg',
-    '/static/images/events/software-vs-data/IMG_8615.jpg',
-    '/static/images/events/software-vs-data/IMG_8621.jpg',
+    '/static/images/events/software-vs-data-engineering/IMG_8615.jpg',
+    '/static/images/events/software-vs-data-engineering/IMG_8621.jpg',
     '/static/images/events/game-design/image7.jpeg',
     '/static/images/events/game-design/image6.jpeg',
   ]

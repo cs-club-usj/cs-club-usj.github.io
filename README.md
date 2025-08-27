@@ -1,4 +1,4 @@
-![cs-club-banner](/public/static/images/banner.png)
+![cs-club-banner](/public/static/images/club/banner.png)
 
 # The Club's Official Website
 

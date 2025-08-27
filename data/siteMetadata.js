@@ -11,7 +11,7 @@ const siteMetadata = {
   siteUrl: 'https://cs-club-usj.github.io',
   siteRepo: 'https://github.com/cs-club-usj/cs-club-usj.github.io',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/banner.png`,
+  socialBanner: `${process.env.BASE_PATH || ''}/static/images/club/banner.png`,
   email: 'cs.club.usj@gmail.com',
   whatsapp: 'https://chat.whatsapp.com/Ls5cFj9KQSQFiPLxYVnTUm', // community group link
   instagram: 'cs.club.usj', // use handle without '@'

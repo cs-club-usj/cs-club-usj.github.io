@@ -24,14 +24,14 @@ const Header = () => {
           </Link>
           <Link href={SVE_LINK}>
             <Image
-              src={'/static/images/sve.png'}
+              src={'/static/images/sve/sve-light.png'}
               alt={'SVE Logo Light'}
               width={180}
               height={128}
               className="block object-contain dark:hidden"
             />
             <Image
-              src={'/static/images/sve-dark.png'}
+              src={'/static/images/sve/sve-dark.png'}
               alt={'SVE Logo Dark'}
               width={180}
               height={128}
