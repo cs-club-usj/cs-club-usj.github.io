@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function AuthorLayout2({ children, content }: Props) {
-  const { name, avatar, email, twitter, bluesky, linkedin, github } = content
+  const { name, avatar, email, linkedin, github } = content
 
   return (
     <>
@@ -32,12 +32,22 @@ export default function AuthorLayout2({ children, content }: Props) {
             )}
             <h3 className="pb-2 pt-4 text-2xl font-bold leading-8 tracking-tight">{name}</h3>
             <div className="flex space-x-3 pt-6">
-              <SocialIcon kind="mail" href={`mailto:${email}`} />
-              <SocialIcon kind="github" href={github} />
+              <SocialIcon kind="email" href={`mailto:${email}`} />
               <SocialIcon kind="linkedin" href={linkedin} />
-              <SocialIcon kind="x" href={twitter} />
-              <SocialIcon kind="bluesky" href={bluesky} />
+              <SocialIcon kind="github" href={github} />
             </div>
+            {
+            //TODO: Add back to board link with dynamic href
+            /*<div className="pt-6 w-full">
+              <Link
+                href="/board"
+                className="py-3 group flex w-full items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
+                aria-label="Back to board"
+              >
+                <Arrow direction="left">Back to board</Arrow>
+              </Link>
+            </div>*/
+            }
           </div>
           <div className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
             {children}
