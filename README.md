@@ -32,7 +32,7 @@ npx degit 'timlrx/tailwind-nextjs-starter-blog'
    other analytics provider or a commenting solution other than giscus.
 4. Personalize `authors/default.md` (main author)
 5. Modify `projectsData.ts`
-6. Modify `headerNavLinks.ts` to customize navigation links
+6. Modify `navLinks/headerNavLinks.ts` and `navLinks/footerNavLinks.ts` to customize navigation links
 7. Add blog posts
 8. Deploy on Vercel
 
@@ -68,7 +68,7 @@ Edit the layout in `app` or content in `data`. With live reloading, the pages au
 
 `data/projectsData.js` - data used to generate styled card on the projects page.
 
-`data/headerNavLinks.js` - navigation links.
+`data/navLinks` - navigation links.
 
 `data/logo.svg` - replace with your own logo.
 
