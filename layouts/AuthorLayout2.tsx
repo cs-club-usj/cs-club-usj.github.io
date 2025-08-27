@@ -6,9 +6,10 @@ import Image from '@/components/Image'
 interface Props {
   children: ReactNode
   content: Omit<Authors, '_id' | '_raw' | 'body'>
+  role: string
 }
 
-export default function AuthorLayout2({ children, content }: Props) {
+export default function AuthorLayout2({ children, content /*, role*/ }: Props) {
   const { name, avatar, email, linkedin, github } = content
 
   return (
@@ -31,6 +32,10 @@ export default function AuthorLayout2({ children, content }: Props) {
               />
             )}
             <h3 className="pb-2 pt-4 text-2xl font-bold leading-8 tracking-tight">{name}</h3>
+            {
+            //TODO: Add role
+            //<div className="text-gray-500 dark:text-gray-400">{role}</div>
+            }
             <div className="flex space-x-3 pt-6">
               <SocialIcon kind="email" href={`mailto:${email}`} />
               <SocialIcon kind="linkedin" href={linkedin} />
