@@ -7,10 +7,9 @@ import SectionContainer from '@/components/SectionContainer'
 import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import ArrowRight from '@/components/arrows/ArrowRight'
-import ArrowLeft from '@/components/arrows/ArrowLeft'
+import Arrow from '@/components/Arrow'
 
-const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
+//const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   weekday: 'long',
@@ -60,29 +59,30 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   {authorDetails.map((author) => (
                     <li className="flex items-center space-x-2" key={author.name}>
                       {author.avatar && (
-                        <Image
-                          src={author.avatar}
-                          width={38}
-                          height={38}
-                          alt="avatar"
-                          className="h-10 w-10 rounded-full"
-                        />
+                        <Link
+                            href={`/board/member/${author.slug}`}
+                            target='_blank'
+                            className="text-white hover:text-primary-500"
+                        >
+                          <Image
+                            src={author.avatar}
+                            width={64}
+                            height={64}
+                            alt={`${author.name}'s avatar`}
+                            className="h-12 w-12 rounded-full"
+                          />
+                        </Link>
                       )}
-                      <dl className="whitespace-nowrap text-sm font-medium leading-5">
+                      <dl className="whitespace-nowrap font-medium leading-5">
                         <dt className="sr-only">Name</dt>
-                        <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
-                        <dt className="sr-only">Twitter</dt>
                         <dd>
-                          {author.twitter && (
-                            <Link
-                              href={author.twitter}
-                              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            >
-                              {author.twitter
-                                .replace('https://twitter.com/', '@')
-                                .replace('https://x.com/', '@')}
-                            </Link>
-                          )}
+                          <Link
+                            href={`/board/member/${author.slug}`}
+                            target='_blank'
+                            className="text-white hover:text-primary-500"
+                          >
+                            {author.name}
+                          </Link>
                         </dd>
                       </dl>
                     </li>
@@ -90,32 +90,31 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 </ul>
               </dd>
             </dl>
-            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pb-8 pt-10 text-justify dark:prose-invert">
+            <div className="xl:col-span-3 xl:row-span-2 xl:pb-0">
+              <div className="prose max-w-none pt-10 text-justify dark:prose-invert">
                 {children}
               </div>
               {/*
               <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
-                {/* <Link href={discussUrl(path)} rel="nofollow">
-                  Discuss on Twitter
-                </Link>
-                {` • `} */}
-                <Link href={editUrl(filePath)}>View on GitHub</Link>
+                  <Link href={discussUrl(path)} rel="nofollow">Discuss on Twitter</Link>
+                  {` • `}
+                  <Link href={editUrl(filePath)}>View on GitHub</Link>
               </div>
-              {/* {siteMetadata.comments && (
+              {siteMetadata.comments && (
                 <div
                   className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"
                   id="comment"
                 >
                   <Comments slug={slug} />
                 </div>
-              )} */}
+              )}
+              */}
             </div>
             <footer>
               <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
-                {tags && (
+                {tags?.length > 0 && (
                   <div className="py-4 xl:py-8">
-                    <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                    <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">
                       Tags
                     </h2>
                     <div className="flex flex-wrap">
@@ -128,35 +127,37 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 {(next || prev) && (
                   <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
                     {prev && prev.path && (
-                      <div>
-                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                          Previous Article
-                        </h2>
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/${prev.path}`}>{prev.title}</Link>
+                      <Link href={`/${prev.path}`}>
+                        <div className="p-4 mb-3 rounded-md border border-gray-200 hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 transition-colors">
+                          <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">Previous Article</h2>
+                          <h3 className="text-base font-semibold">{prev.title}</h3>
+                          <span className="text-primary-600 text-primary-500">
+                            <Arrow direction="left">Read More</Arrow>
+                          </span>
                         </div>
-                      </div>
+                      </Link>
                     )}
                     {next && next.path && (
-                      <div>
-                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                          Next Article
-                        </h2>
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/${next.path}`}>{next.title}</Link>
+                      <Link href={`/${next.path}`}>
+                        <div className="p-4 rounded-md border border-gray-200 hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 transition-colors">
+                          <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">Next Article</h2>
+                          <h3 className="text-base font-semibold">{next.title}</h3>
+                          <span className="text-primary-600 dark:text-primary-500">
+                            <Arrow direction="right">Read More</Arrow>
+                          </span>
                         </div>
-                      </div>
+                      </Link>
                     )}
                   </div>
                 )}
               </div>
-              <div className="pt-4 xl:pt-8">
+              <div>
                 <Link
                   href={`/${basePath}`}
-                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                  className="py-3 group flex w-full items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
                   aria-label="Back to the blog"
                 >
-                  &larr; Back to the blog
+                  <Arrow direction="left">Back to the blog</Arrow>
                 </Link>
               </div>
             </footer>
