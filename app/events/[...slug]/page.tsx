@@ -93,30 +93,40 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
           <Gallery images={imagesWithBlur} />
           <footer className="mt-4">
             {(prev || next) && (
-              <div className="flex justify-between gap-4">
-                {prev && (
-                  <Link href={`/events/${prev.slug}`}>
-                    <div className="p-4 rounded-md border border-gray-200 hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 transition-colors">
-                      <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">Previous Gallery</h2>
-                      <h3 className="text-base font-semibold">{prev.title}</h3>
-                      <span className="text-primary-600 dark:text-primary-500">
-                        <Arrow direction="left">View gallery</Arrow>
-                      </span>
-                    </div>
-                  </Link>
-                )}
+                <div
+                className={`flex gap-4
+                  ${
+                  next && !prev
+                    ? "justify-right"
+                    : prev && !next
+                    ? "justify-end"
+                    : "justify-between"
+                  }`
+                }
+                >
                 {next && (
                   <Link href={`/events/${next.slug}`}>
-                    <div className="p-4 rounded-md border border-gray-200 hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 transition-colors">
-                      <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">Next Gallery</h2>
-                      <h3 className="text-base font-semibold">{next.title}</h3>
-                      <span className="text-primary-600 dark:text-primary-500">
-                        <Arrow direction="right">View gallery</Arrow>
-                      </span>
-                    </div>
+                  <div className="p-4 rounded-md border border-gray-200 hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 transition-colors">
+                    <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">Previous Gallery</h2>
+                    <h3 className="text-base font-semibold">{next.title}</h3>
+                    <span className="text-primary-600 dark:text-primary-500">
+                    <Arrow direction="left">View gallery</Arrow>
+                    </span>
+                  </div>
                   </Link>
                 )}
-              </div>
+                {prev && (
+                  <Link href={`/events/${prev.slug}`}>
+                  <div className="p-4 rounded-md border border-gray-200 hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 transition-colors">
+                    <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">Next Gallery</h2>
+                    <h3 className="text-base font-semibold">{prev.title}</h3>
+                    <span className="text-primary-600 dark:text-primary-500">
+                    <Arrow direction="right">View gallery</Arrow>
+                    </span>
+                  </div>
+                  </Link>
+                )}
+                </div>
             )}
           </footer>
         </div>
