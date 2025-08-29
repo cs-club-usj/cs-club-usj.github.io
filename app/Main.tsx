@@ -41,7 +41,7 @@ export default function Home({ posts, images }) {
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             {siteMetadata.descriptionEvents}
           </p>
-        <ul>
+          <ul>
             {!events.length && 'No events found.'}
             {events.slice(0, MAX_EVENTS_DISPLAY).map((event) => (
               <MainCard event={event} key={event.slug} isLandscape />
@@ -64,9 +64,9 @@ export default function Home({ posts, images }) {
           {posts.slice(0, MAX_BLOG_DISPLAY).map((post) => {
             const { slug, date, title, summary, tags } = post
             return (
-              <li key={slug} className="pt-6 pb-10">
-                <article className="flex flex-col h-full">
-                  <div className="space-y-3 mb-5">
+              <li key={slug} className="pb-10 pt-6">
+                <article className="flex h-full flex-col">
+                  <div className="mb-5 space-y-3">
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
@@ -77,27 +77,27 @@ export default function Home({ posts, images }) {
                       <h2 className="text-2xl font-bold leading-8 tracking-tight">
                         <Link
                           href={`/blog/${slug}`}
-                          className="text-gray-900 hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-500 transition-colors"
+                          className="text-gray-900 transition-colors hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-500"
                         >
                           {title}
                         </Link>
                       </h2>
-                      <div className="flex flex-wrap mt-2">
+                      <div className="mt-2 flex flex-wrap">
                         {tags.map((tag) => (
                           <Tag key={tag} text={tag} />
                         ))}
                       </div>
                     </div>
                   </div>
-                  <div className="flex-grow flex items-center mb-6">
-                    <div className="prose max-w-none text-gray-500 dark:text-gray-400 text-justify w-full">
+                  <div className="mb-6 flex flex-grow items-center">
+                    <div className="prose w-full max-w-none text-justify text-gray-500 dark:text-gray-400">
                       {summary}
                     </div>
                   </div>
                   <div className="text-base font-medium leading-6">
                     <Link
                       href={`/blog/${slug}`}
-                      className="px-3 py-2 group w-full items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
+                      className="group w-full items-center justify-center space-x-2 rounded-md bg-primary-600 px-3 py-2 font-semibold text-white transition-colors hover:bg-primary-700"
                       aria-label={`Read more: "${title}"`}
                     >
                       <Arrow direction="right">Read more</Arrow>
@@ -114,7 +114,7 @@ export default function Home({ posts, images }) {
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
             href="/blog"
-            className="px-4 py-2 group flex items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
+            className="group flex items-center justify-center space-x-2 rounded-md bg-primary-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-primary-700"
             aria-label="All posts"
           >
             <Arrow direction="right">All Posts</Arrow>

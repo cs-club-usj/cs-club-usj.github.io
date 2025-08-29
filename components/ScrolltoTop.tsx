@@ -21,13 +21,13 @@ const ScrolltoTop = () => {
   return (
     <div
       className={`fixed bottom-8 right-8 flex flex-col gap-3 transition-opacity duration-300 ${
-        show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        show ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
       }`}
     >
       <button
         aria-label="Scroll To Top"
         onClick={handleScrollTop}
-        className="rounded-md p-2 bg-primary-600 hover:bg-primary-700 text-white transition-colors"
+        className="rounded-md bg-primary-600 p-2 text-white transition-colors hover:bg-primary-700"
       >
         <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
           <path

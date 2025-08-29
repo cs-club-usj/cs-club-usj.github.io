@@ -57,7 +57,7 @@ export default async function Page(props: { params: Promise<{ year: string }> })
               key={b.year}
               href={`/board/${b.year}`}
               className={`transition-colors hover:text-primary-600 ${
-                board.year === b.year ? 'text-primary-600 cursor-default' : ''
+                board.year === b.year ? 'cursor-default text-primary-600' : ''
               }`}
             >
               <h3 className="pb-2 pt-4 text-3xl font-bold leading-8 tracking-tight">{b.year}</h3>

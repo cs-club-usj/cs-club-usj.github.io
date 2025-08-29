@@ -105,9 +105,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <main className="mb-auto">{children}</main>
             </SearchProvider>
           </SectionContainer>
-          </ThemeProviders>
-          <Footer />
-          <ScrolltoTop />
+        </ThemeProviders>
+        <Footer />
+        <ScrolltoTop />
       </body>
     </html>
   )

@@ -89,7 +89,7 @@ function Carousel({ images }: { images: { src: string; blurDataURL: string }[] }
             key={index}
             onClick={() => scrollTo(index)}
             className={`h-2 w-2 rounded-full
-              ${index === selectedIndex ? 'bg-primary-600 cursor-default' : 'bg-white/90 transition-colors hover:bg-white/60'}
+              ${index === selectedIndex ? 'cursor-default bg-primary-600' : 'bg-white/90 transition-colors hover:bg-white/60'}
             `}
             aria-label={`Go to slide ${index + 1}`}
           />

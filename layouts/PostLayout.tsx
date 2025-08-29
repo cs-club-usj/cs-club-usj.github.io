@@ -60,9 +60,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     <li className="flex items-center space-x-2" key={author.name}>
                       {author.avatar && (
                         <Link
-                            href={`/board/member/${author.slug}`}
-                            target='_blank'
-                            className="text-white hover:text-primary-500"
+                          href={`/board/member/${author.slug}`}
+                          target="_blank"
+                          className="text-white hover:text-primary-500"
                         >
                           <Image
                             src={author.avatar}
@@ -78,8 +78,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                         <dd>
                           <Link
                             href={`/board/member/${author.slug}`}
-                            target='_blank'
-                            className="dark:text-white hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
+                            target="_blank"
+                            className="transition-colors hover:text-primary-600 dark:text-white dark:hover:text-primary-500"
                           >
                             {author.name}
                           </Link>
@@ -128,10 +128,12 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
                     {prev && prev.path && (
                       <Link href={`/${prev.path}`}>
-                        <div className="p-4 mb-3 rounded-md border border-gray-200 hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 transition-colors">
-                          <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">Previous Article</h2>
+                        <div className="mb-3 rounded-md border border-gray-200 p-4 transition-colors hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+                          <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                            Previous Article
+                          </h2>
                           <h3 className="text-base font-semibold">{prev.title}</h3>
-                          <span className="text-primary-600 text-primary-500">
+                          <span className="text-primary-500 text-primary-600">
                             <Arrow direction="left">Read More</Arrow>
                           </span>
                         </div>
@@ -139,8 +141,10 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     )}
                     {next && next.path && (
                       <Link href={`/${next.path}`}>
-                        <div className="p-4 rounded-md border border-gray-200 hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 transition-colors">
-                          <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">Next Article</h2>
+                        <div className="rounded-md border border-gray-200 p-4 transition-colors hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+                          <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                            Next Article
+                          </h2>
                           <h3 className="text-base font-semibold">{next.title}</h3>
                           <span className="text-primary-600 dark:text-primary-500">
                             <Arrow direction="right">Read More</Arrow>
@@ -154,7 +158,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <div>
                 <Link
                   href={`/${basePath}`}
-                  className="py-3 group flex w-full items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
+                  className="group flex w-full items-center justify-center space-x-2 rounded-md bg-primary-600 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
                   aria-label="Back to the blog"
                 >
                   <Arrow direction="left">Back to the blog</Arrow>

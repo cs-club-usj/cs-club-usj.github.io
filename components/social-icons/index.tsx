@@ -11,7 +11,7 @@ import {
   Bluesky,
   Github,
   Medium,
-  Mastodon
+  Mastodon,
 } from './icons'
 
 const components = {
@@ -27,7 +27,7 @@ const components = {
   bluesky: Bluesky,
   github: Github,
   medium: Medium,
-  mastodon: Mastodon
+  mastodon: Mastodon,
 }
 
 type SocialIconProps = {
@@ -54,7 +54,7 @@ const SocialIcon = ({ kind, href, size = 8 }: SocialIconProps) => {
     >
       <span className="sr-only">{kind}</span>
       <SocialSvg
-        className={`fill-current text-gray-900 hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-500 transition-colors h-${size} w-${size}`}
+        className={`fill-current text-gray-900 transition-colors hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-500 h-${size} w-${size}`}
       />
     </a>
   )

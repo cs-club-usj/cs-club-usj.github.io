@@ -65,7 +65,7 @@ const MainCard = async ({
               <Link
                 href={`/blog/${slug}`}
                 aria-label={`Link to ${title}`}
-                className="text-gray-900 hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-500 transition-colors"
+                className="text-gray-900 transition-colors hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-500"
               >
                 {title}
               </Link>
@@ -78,7 +78,7 @@ const MainCard = async ({
               </span>
             )}
           </h2>
-          <div className="flex flex-col justify-center h-full text-sm gap-2">
+          <div className="flex h-full flex-col justify-center gap-2 text-sm">
             <p className="flex flex-row items-center gap-2 whitespace-pre-line">
               <CalendarDays className="min-h-6 min-w-6" /> {new Date(date).toDateString()}
             </p>
@@ -96,7 +96,7 @@ const MainCard = async ({
           <div className="mt-auto flex flex-col gap-2">
             <Link
               href={`/blog/${more}`}
-              className="text-base font-medium leading-6 text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600 transition-colors"
+              className="text-base font-medium leading-6 text-primary-600 transition-colors hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600"
               aria-label={`Link to ${title}`}
             >
               <Arrow direction="right">Read more</Arrow>
@@ -104,7 +104,7 @@ const MainCard = async ({
             {slug && !upcoming && (
               <Link
                 href={`/events/${slug}`}
-                className="text-base font-medium leading-6 text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600 transition-colors"
+                className="text-base font-medium leading-6 text-primary-600 transition-colors hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600"
                 aria-label={`Link to ${title}`}
               >
                 <Arrow direction="right">View gallery</Arrow>

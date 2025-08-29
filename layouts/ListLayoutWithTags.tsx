@@ -36,15 +36,18 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
 
   return (
     <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-      <nav className="flex justify-between items-center">
+      <nav className="flex items-center justify-between">
         {!prevPage && (
-          <button className="cursor-not-allowed disabled:opacity-50 px-3 py-2 group flex items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white" disabled={!prevPage}>
+          <button
+            className="group flex cursor-not-allowed items-center justify-center space-x-2 rounded-md bg-primary-600 px-3 py-2 font-semibold text-white disabled:opacity-50"
+            disabled={!prevPage}
+          >
             <Arrow direction="left">Previous</Arrow>
           </button>
         )}
         {prevPage && (
           <Link
-            className="px-3 py-2 group flex items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
+            className="group flex items-center justify-center space-x-2 rounded-md bg-primary-600 px-3 py-2 font-semibold text-white transition-colors hover:bg-primary-700"
             href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
             rel="prev"
           >
@@ -60,10 +63,10 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
               <Link
                 key={page}
                 href={page === 1 ? `/${basePath}/` : `/${basePath}/page/${page}`}
-                className={`px-3 py-1 flex items-center justify-center rounded-md font-medium transition-colors ${
+                className={`flex items-center justify-center rounded-md px-3 py-1 font-medium transition-colors ${
                   isActive
-                    ? "bg-primary-600 text-white"
-                    : "opacity-50 bg-primary-600 text-white hover:opacity-100 transition-opacity"
+                    ? 'bg-primary-600 text-white'
+                    : 'bg-primary-600 text-white opacity-50 transition-opacity hover:opacity-100'
                 }`}
               >
                 {page}
@@ -72,13 +75,16 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
           })}
         </div>
         {!nextPage && (
-          <button className="cursor-not-allowed disabled:opacity-50 px-3 py-2 group flex items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white" disabled={!nextPage}>
+          <button
+            className="group flex cursor-not-allowed items-center justify-center space-x-2 rounded-md bg-primary-600 px-3 py-2 font-semibold text-white disabled:opacity-50"
+            disabled={!nextPage}
+          >
             <Arrow direction="right">Next</Arrow>
           </button>
         )}
         {nextPage && (
           <Link
-            className="px-3 py-2 group flex items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
+            className="group flex items-center justify-center space-x-2 rounded-md bg-primary-600 px-3 py-2 font-semibold text-white transition-colors hover:bg-primary-700"
             href={`/${basePath}/page/${currentPage + 1}`}
             rel="next"
           >
@@ -125,14 +131,16 @@ export default function ListLayoutWithTags({
                     All Posts
                   </Link>
                 )}
-                <h3 className="font-bold uppercase text-gray-700 dark:text-gray-300 cursor-default">Browse by Tags:</h3>
+                <h3 className="cursor-default font-bold uppercase text-gray-700 dark:text-gray-300">
+                  Browse by Tags:
+                </h3>
               </div>
               <ul>
                 {sortedTags.map((t) => {
                   return (
                     <li key={t} className="my-3">
                       {decodeURI(pathname.split('/tags/')[1]) === slug(t) ? (
-                        <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-primary-600 cursor-default">
+                        <h3 className="inline cursor-default px-3 py-2 text-sm font-bold uppercase text-primary-600">
                           {`${t} (${tagCounts[t]})`}
                         </h3>
                       ) : (
@@ -170,16 +178,18 @@ export default function ListLayoutWithTags({
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
                             <Link
                               href={`/${path}`}
-                              className="transition-colors text-gray-900 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-600"
+                              className="text-gray-900 transition-colors hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-600"
                             >
                               {title}
                             </Link>
                           </h2>
                           <div className="flex flex-wrap">
-                            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                            {tags?.map((tag) => (
+                              <Tag key={tag} text={tag} />
+                            ))}
                           </div>
                         </div>
-                        <div className="prose max-w-none text-gray-500 dark:text-gray-400 text-justify">
+                        <div className="prose max-w-none text-justify text-gray-500 dark:text-gray-400">
                           {summary}
                         </div>
                       </div>

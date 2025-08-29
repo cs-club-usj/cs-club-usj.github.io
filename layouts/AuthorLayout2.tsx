@@ -33,8 +33,8 @@ export default function AuthorLayout2({ children, content /*, role*/ }: Props) {
             )}
             <h3 className="pb-2 pt-4 text-2xl font-bold leading-8 tracking-tight">{name}</h3>
             {
-            //TODO: Add role
-            //<div className="text-gray-500 dark:text-gray-400">{role}</div>
+              //TODO: Add role
+              //<div className="text-gray-500 dark:text-gray-400">{role}</div>
             }
             <div className="flex space-x-3 pt-6">
               <SocialIcon kind="email" href={`mailto:${email}`} />
@@ -42,8 +42,8 @@ export default function AuthorLayout2({ children, content /*, role*/ }: Props) {
               <SocialIcon kind="github" href={github} />
             </div>
             {
-            //TODO: Add back to board link with dynamic href
-            /*<div className="pt-6 w-full">
+              //TODO: Add back to board link with dynamic href
+              /*<div className="pt-6 w-full">
               <Link
                 href="/board"
                 className="py-3 group flex w-full items-center justify-center space-x-2 rounded-md bg-primary-600 font-semibold text-white transition-colors hover:bg-primary-700"
