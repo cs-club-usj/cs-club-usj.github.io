@@ -79,7 +79,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                           <Link
                             href={`/board/member/${author.slug}`}
                             target='_blank'
-                            className="text-white hover:text-primary-500"
+                            className="dark:text-white hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
                           >
                             {author.name}
                           </Link>
