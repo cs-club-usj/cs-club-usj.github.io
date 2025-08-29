@@ -6,7 +6,7 @@ import Image from '@/components/Image'
 interface Props {
   children: ReactNode
   content: Omit<Authors, '_id' | '_raw' | 'body'>
-  role: string
+  //role: string
 }
 
 export default function AuthorLayout2({ children, content /*, role*/ }: Props) {
