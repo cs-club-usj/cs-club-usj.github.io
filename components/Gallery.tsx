@@ -8,7 +8,6 @@ import Masonry from 'react-masonry-css'
 
 import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
-import Download from 'yet-another-react-lightbox/plugins/download'
 import Arrow from './Arrow'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -68,7 +67,7 @@ export function Gallery({ images }: { images: { src: string; blurDataURL: string
           imageFit: 'contain',
           padding: 0,
         }}
-        plugins={[Fullscreen, Zoom, Download]}
+        plugins={[Fullscreen, Zoom]}
         fullscreen={{
           auto: false,
         }}
@@ -83,13 +82,7 @@ export function Gallery({ images }: { images: { src: string; blurDataURL: string
           pinchZoomDistanceFactor: 100,
           scrollToZoom: true,
         }}
-        download={{
-          download: async ({ slide }) => {
-            const link = document.createElement('a')
-            link.href = slide.src
-            link.click()
-          },
-        }}
+        // TODO: implement download functionality
       />
     </Masonry>
   )
