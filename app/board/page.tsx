@@ -59,10 +59,16 @@ export default async function Page() {
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="flex flex-col items-center gap-y-10">
           <div className="flex flex-row flex-wrap justify-center gap-x-10">
-            <AuthorLayout content={coreContent(president as Authors)} role={president!.role} />
-            <AuthorLayout content={coreContent(vp as Authors)} role={vp!.role} />
-            <AuthorLayout content={coreContent(secretary as Authors)} role={secretary!.role} />
-            <AuthorLayout content={coreContent(treasurer as Authors)} role={treasurer!.role} />
+            {president && (
+              <AuthorLayout content={coreContent(president as Authors)} role={president.role} />
+            )}
+            {vp && <AuthorLayout content={coreContent(vp as Authors)} role={vp.role} />}
+            {secretary && (
+              <AuthorLayout content={coreContent(secretary as Authors)} role={secretary.role} />
+            )}
+            {treasurer && (
+              <AuthorLayout content={coreContent(treasurer as Authors)} role={treasurer.role} />
+            )}
             {rest.map((member) => (
               <AuthorLayout key={member._id} content={coreContent(member)} role={member!.role} />
             ))}
