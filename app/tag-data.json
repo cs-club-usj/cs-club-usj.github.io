@@ -1,12 +1,13 @@
 {
+  "talks": 4,
   "events": 3,
   "computer-science": 3,
-  "talks": 4,
-  "artificial-intelligence": 1,
-  "data-engineering": 2,
   "software-engineering": 2,
+  "data-engineering": 2,
+  "entrepreneurship": 2,
+  "artificial-intelligence": 1,
   "quantum-computing": 1,
   "microsoft": 1,
   "game-design": 1,
-  "entrepreneurship": 1
+  "blockchain": 1
 }
