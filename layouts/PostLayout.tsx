@@ -129,10 +129,10 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     {prev && prev.path && (
                       <Link href={`/${prev.path}`}>
                         <div className="mb-3 rounded-md border border-gray-200 p-4 transition-colors hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-                          <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                          <h2 className="uppercase tracking-wide mb-2 text-gray-500 dark:text-gray-400">
                             Previous Article
                           </h2>
-                          <h3 className="text-base font-semibold">{prev.title}</h3>
+                          <h3 className="text-base font-semibold mb-2">{prev.title}</h3>
                           <span className="text-primary-500 text-primary-600">
                             <Arrow direction="left">Read More</Arrow>
                           </span>
@@ -142,10 +142,10 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     {next && next.path && (
                       <Link href={`/${next.path}`}>
                         <div className="rounded-md border border-gray-200 p-4 transition-colors hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-                          <h2 className="uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                          <h2 className="uppercase tracking-wide mb-2 text-gray-500 dark:text-gray-400">
                             Next Article
                           </h2>
-                          <h3 className="text-base font-semibold">{next.title}</h3>
+                          <h3 className="text-base font-semibold mb-2">{next.title}</h3>
                           <span className="text-primary-600 dark:text-primary-500">
                             <Arrow direction="right">Read More</Arrow>
                           </span>
