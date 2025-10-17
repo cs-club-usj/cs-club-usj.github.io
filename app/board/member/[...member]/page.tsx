@@ -51,19 +51,17 @@ export default async function Page(props: { params: Promise<{ member: string[] }
   const mainContent = coreContent(author)
 
   const resolveBoardMembers = (board: Boards) =>
-    board.members
-      .map((m) => allAuthors.find((a) => a.slug === m.name))
-      .filter(Boolean) as Authors[]
+    board.members.map((m) => allAuthors.find((a) => a.slug === m.name)).filter(Boolean) as Authors[]
 
-  const candidateBoards = allBoards.filter((b) =>
-    b.members.some((m) => m.name === author.slug)
-  )
+  const candidateBoards = allBoards.filter((b) => b.members.some((m) => m.name === author.slug))
   const chosenBoard = candidateBoards.find((b) => b.year === '2025-2026') ?? candidateBoards[0]
 
-  let membersList = chosenBoard ? resolveBoardMembers(chosenBoard) : allAuthors
+  const membersList = chosenBoard ? resolveBoardMembers(chosenBoard) : allAuthors
   const index = membersList.findIndex((a) => a.slug === author.slug)
   const prevProp =
-    index > 0 ? { path: `board/member/${membersList[index - 1].slug}`, title: membersList[index - 1].name } : undefined
+    index > 0
+      ? { path: `board/member/${membersList[index - 1].slug}`, title: membersList[index - 1].name }
+      : undefined
   const nextProp =
     index >= 0 && index < membersList.length - 1
       ? { path: `board/member/${membersList[index + 1].slug}`, title: membersList[index + 1].name }
