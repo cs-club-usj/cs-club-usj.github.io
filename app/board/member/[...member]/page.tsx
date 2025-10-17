@@ -1,4 +1,4 @@
-import { Authors, allAuthors } from 'contentlayer/generated'
+import { Authors, allAuthors, allBoards, Boards } from 'contentlayer/generated'
 import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import AuthorLayout2 from '@/layouts/AuthorLayout2'
 import { coreContent } from 'pliny/utils/contentlayer'
@@ -46,15 +46,32 @@ export const generateStaticParams = async () => {
 
 export default async function Page(props: { params: Promise<{ member: string[] }> }) {
   const params = await props.params
-  const member = decodeURI(params.member.join('/'))
-  const author = allAuthors.find((p) => p.slug === member) as Authors
+  const memberSlug = decodeURI(params.member.join('/'))
+  const author = allAuthors.find((a) => a.slug === memberSlug) as Authors
   const mainContent = coreContent(author)
 
+  const resolveBoardMembers = (board: Boards) =>
+    board.members
+      .map((m) => allAuthors.find((a) => a.slug === m.name))
+      .filter(Boolean) as Authors[]
+
+  const candidateBoards = allBoards.filter((b) =>
+    b.members.some((m) => m.name === author.slug)
+  )
+  const chosenBoard = candidateBoards.find((b) => b.year === '2025-2026') ?? candidateBoards[0]
+
+  let membersList = chosenBoard ? resolveBoardMembers(chosenBoard) : allAuthors
+  const index = membersList.findIndex((a) => a.slug === author.slug)
+  const prevProp =
+    index > 0 ? { path: `board/member/${membersList[index - 1].slug}`, title: membersList[index - 1].name } : undefined
+  const nextProp =
+    index >= 0 && index < membersList.length - 1
+      ? { path: `board/member/${membersList[index + 1].slug}`, title: membersList[index + 1].name }
+      : undefined
+
   return (
-    <>
-      <AuthorLayout2 content={mainContent}>
-        <MDXLayoutRenderer code={author.body.code} />
-      </AuthorLayout2>
-    </>
+    <AuthorLayout2 content={mainContent} prev={prevProp} next={nextProp}>
+      <MDXLayoutRenderer code={author.body.code} />
+    </AuthorLayout2>
   )
 }
