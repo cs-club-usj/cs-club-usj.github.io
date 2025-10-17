@@ -8,8 +8,8 @@ import Masonry from 'react-masonry-css'
 
 import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
-import Arrow from './Arrow'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import Download from 'yet-another-react-lightbox/plugins/download'
+import { ChevronLeft, ChevronRight, X, ImageDown, Maximize, Minimize, ZoomIn, ZoomOut } from 'lucide-react'
 
 export function Gallery({ images }: { images: { src: string; blurDataURL: string }[] }) {
   const [index, setIndex] = useState(-1)
@@ -45,10 +45,10 @@ export function Gallery({ images }: { images: { src: string; blurDataURL: string
         index={index}
         close={() => setIndex(-1)}
         slides={images.map(({ src }) => ({ src }))}
-        /*render={{
+        render={{
             iconPrev: () => (
               <button
-                className="absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-1 transition-colors hover:bg-white/70"
+                className="absolute left-4 rounded-full bg-white/90 p-2 transition-colors hover:bg-white/70"
                 aria-label="Previous Slide"
               >
                 <ChevronLeft className="h-6 w-6 stroke-[3] text-primary-600" />
@@ -56,21 +56,75 @@ export function Gallery({ images }: { images: { src: string; blurDataURL: string
             ),
             iconNext: () => (
               <button
-                className="absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-1 transition-colors hover:bg-white/70"
+                className="absolute right-4 rounded-full bg-white/90 p-2 transition-colors hover:bg-white/70"
                 aria-label="Next Slide"
               >
                 <ChevronRight className="h-6 w-6 stroke-[3] text-primary-600" />
               </button>
             ),
-          }}*/
+            iconClose: () => (
+              <button
+                type="button"
+                className="rounded-full bg-white/90 p-2 transition-colors hover:bg-white/70"
+                aria-label="Close"
+              >
+                <X className="h-6 w-6 stroke-[2.5] text-primary-600" />
+              </button>
+            ),
+            iconDownload: () => (
+              <button
+                type="button"
+                className="rounded-full bg-white/90 p-2 transition-colors hover:bg-white/70"
+                aria-label="Download"
+              >
+                <ImageDown className="h-6 w-6 stroke-[2.5] text-primary-600" />
+              </button>
+            ),
+            iconEnterFullscreen: () => (
+              <button
+                type="button"
+                className="rounded-full bg-white/90 p-2 transition-colors hover:bg-white/70"
+                aria-label="Enter fullscreen"
+              >
+                <Maximize className="h-6 w-6 stroke-[2.5] text-primary-600" />
+              </button>
+            ),
+            iconExitFullscreen: () => (
+              <button
+                type="button"
+                className="rounded-full bg-white/90 p-2 transition-colors hover:bg-white/70"
+                aria-label="Exit fullscreen"
+              >
+                <Minimize className="h-6 w-6 stroke-[2.5] text-primary-600" />
+              </button>
+            ),
+            iconZoomIn: () => (
+              <button
+                type="button"
+                className="rounded-full bg-white/90 p-2 transition-colors hover:bg-white/70"
+                aria-label="Zoom in"
+              >
+                <ZoomIn className="h-6 w-6 stroke-[2.5] text-primary-600" />
+              </button>
+            ),
+            iconZoomOut: () => (
+              <button
+                type="button"
+                className="rounded-full bg-white/90 p-2 transition-colors hover:bg-white/70"
+                aria-label="Zoom out"
+              >
+                <ZoomOut className="h-6 w-6 stroke-[2.5] text-primary-600" />
+              </button>
+            ),
+          }}
         carousel={{
           imageFit: 'contain',
           padding: 0,
         }}
-        plugins={[Fullscreen, Zoom]}
-        fullscreen={{
-          auto: false,
-        }}
+        plugins={[Fullscreen, Zoom, Download]}
+          fullscreen={{
+            auto: false,
+          }}
         zoom={{
           maxZoomPixelRatio: 3,
           zoomInMultiplier: 2,
@@ -82,7 +136,52 @@ export function Gallery({ images }: { images: { src: string; blurDataURL: string
           pinchZoomDistanceFactor: 100,
           scrollToZoom: true,
         }}
-        // TODO: implement download functionality
+        download={{
+          download: (params: any) => {
+            const slide = params?.slide
+            const saveAs = params?.saveAs
+            const src = slide?.src || ''
+            if (!src) return
+
+            // Only allow http(s) downloads from valid URLs or same-origin relative URLs
+            let urlObj: URL | null = null
+            try {
+              urlObj = new URL(src, typeof window !== 'undefined' ? window.location.href : undefined)
+            } catch (e) {
+              // invalid URL - refuse to download
+              return
+            }
+            if (!['http:', 'https:'].includes(urlObj.protocol)) return
+
+            // derive filename from pathname, decode and sanitize
+            const pathname = urlObj.pathname || ''
+            const rawBase = pathname.split('/').pop() || 'image'
+            let filename = 'image'
+            try {
+              filename = decodeURIComponent(rawBase)
+            } catch (e) {
+              filename = rawBase
+            }
+
+            // sanitize filename: allow a-z0-9, dot, underscore, hyphen; replace others with '_'
+            filename = filename.replace(/[^a-z0-9._-]/gi, '_')
+
+            // enforce max length
+            const MAX_FILENAME_LEN = 100
+            if (filename.length > MAX_FILENAME_LEN) {
+              const extMatch = filename.match(/(\.[a-z0-9]{1,8})$/i)
+              const ext = extMatch ? extMatch[1] : ''
+              filename = filename.slice(0, MAX_FILENAME_LEN - ext.length) + ext
+            }
+
+            // ensure there is an extension; fallback to jpg
+            if (!/\.[a-z0-9]{1,8}$/i.test(filename)) {
+              filename = filename + '.jpg'
+            }
+
+            if (typeof saveAs === 'function') saveAs(urlObj.toString(), filename)
+          },
+        }}
       />
     </Masonry>
   )
