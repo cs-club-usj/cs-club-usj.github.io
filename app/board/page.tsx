@@ -36,6 +36,7 @@ export default async function Page() {
   const vp = members.find((p) => p.role === 'Vice-President')
   const treasurer = members.find((p) => p.role === 'Treasurer')
   const secretary = members.find((p) => p.role === 'Secretary')
+  const socialMedia = members.find((p) => p.role === 'Content Creator')
 
   const rest = members.filter((p) => p.role === 'Board Member')
 
@@ -68,6 +69,9 @@ export default async function Page() {
             )}
             {treasurer && (
               <AuthorLayout content={coreContent(treasurer as Authors)} role={treasurer.role} />
+            )}
+            {socialMedia && (
+              <AuthorLayout content={coreContent(socialMedia as Authors)} role={socialMedia.role} />
             )}
             {rest.map((member) => (
               <AuthorLayout key={member._id} content={coreContent(member)} role={member!.role} />
