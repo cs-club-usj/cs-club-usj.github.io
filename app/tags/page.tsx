@@ -13,9 +13,9 @@ export default async function Page() {
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
 
   return (
-    <div className="max-h-screen">
+    <div className="flex min-h-screen flex-col">
       <div className="relative overflow-hidden">
-        <div className="relative z-10 mx-auto mb-10 max-w-7xl">
+        <div className="relative mx-auto mb-10 max-w-7xl">
           <div className="text-center">
             <h1 className="mb-6 text-4xl font-bold lg:text-6xl">Tags</h1>
             <p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-900 dark:text-gray-100">
@@ -24,7 +24,8 @@ export default async function Page() {
           </div>
         </div>
       </div>
-      <div className="relative z-10 mx-auto max-w-7xl">
+
+      <div className="relative mx-auto max-w-7xl">
         <div className="mb-12 text-center">
           <div className="inline-flex items-center rounded-md border border-gray-200 px-6 py-3 dark:border-gray-700">
             <svg
@@ -45,6 +46,7 @@ export default async function Page() {
             </span>
           </div>
         </div>
+
         {tagKeys.length === 0 ? (
           <div className="py-20 text-center">
             <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700">
