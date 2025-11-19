@@ -37,13 +37,28 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   const prev = postIndex > 0 ? sortedCoreContents[postIndex - 1] : null
   const next = postIndex + 1 < sortedCoreContents.length ? sortedCoreContents[postIndex + 1] : null
 
-  const imagesWithBlur = await Promise.all(
-    event.images.map(async (src) => {
-      const filePath = path.join(process.cwd(), 'public', src)
-      const buffer = fs.readFileSync(filePath)
-      const { base64 } = await getPlaiceholder(buffer)
+  let imagePaths: string[] = Array.isArray(event.images) ? event.images : []
+  if (imagePaths.length === 0) {
+    const imagesDir = path.join(process.cwd(), 'public/static/images/events', event.slug)
+    if (fs.existsSync(imagesDir)) {
+        imagePaths = fs
+          .readdirSync(imagesDir)
+          .filter((file) => /\.(png|PNG|jpg|JPG|jpeg|JPEG)$/.test(file))
+          .map((file) => `/static/images/events/${event.slug}/${file}`)
+      }
+  }
 
-      return { src, blurDataURL: base64 }
+  const imagesWithBlur = await Promise.all(
+    imagePaths.map(async (src) => {
+      const normalizedSrc = src.startsWith('/') ? src.slice(1) : src
+      const filePath = path.join(process.cwd(), 'public', normalizedSrc)
+      try {
+        const buffer = fs.readFileSync(filePath)
+        const { base64 } = await getPlaiceholder(buffer)
+        return { src, blurDataURL: base64 }
+      } catch (e) {
+        return { src, blurDataURL: '' }
+      }
     })
   )
 
