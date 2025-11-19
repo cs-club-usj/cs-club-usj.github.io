@@ -41,11 +41,11 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   if (imagePaths.length === 0) {
     const imagesDir = path.join(process.cwd(), 'public/static/images/events', event.slug)
     if (fs.existsSync(imagesDir)) {
-        imagePaths = fs
-          .readdirSync(imagesDir)
-          .filter((file) => /\.(png|PNG|jpg|JPG|jpeg|JPEG)$/.test(file))
-          .map((file) => `/static/images/events/${event.slug}/${file}`)
-      }
+      imagePaths = fs
+        .readdirSync(imagesDir)
+        .filter((file) => /\.(png|PNG|jpg|JPG|jpeg|JPEG)$/.test(file))
+        .map((file) => `/static/images/events/${event.slug}/${file}`)
+    }
   }
 
   const imagesWithBlur = await Promise.all(
