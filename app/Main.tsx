@@ -11,8 +11,7 @@ import Arrow from '@/components/Arrow'
 const MAX_BLOG_DISPLAY = 5
 const MAX_EVENTS_DISPLAY = 5
 
-const REGISTRATION_LINK =
-  'https://forms.office.com/Pages/ResponsePage.aspx?id=NGnZKuVDwkGXYfM1_iFMw3XHbG_Qm39JsdCpCi0bIXpUQkFLM0ZMVDRXMEE2RENPRFlUQlJXWUpRNi4u&origin=Invitation&channel=0'
+const REGISTRATION_LINK = 'https://forms.office.com/r/TcUmSVLWbu'
 
 export default function Home({ posts, images }) {
   const events = allCoreContent(sortPosts(allEvents, 'date'))
