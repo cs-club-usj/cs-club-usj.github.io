@@ -1,16 +1,16 @@
 {
+  "workshops": 3,
+  "software-engineering": 3,
+  "google": 1,
+  "cybersecurity": 2,
   "talks": 5,
-  "workshops": 2,
+  "artificial-intelligence": 2,
+  "blockchain": 1,
+  "entrepreneurship": 2,
   "events": 3,
   "computer-science": 3,
-  "software-engineering": 2,
-  "artificial-intelligence": 2,
   "data-engineering": 2,
-  "cybersecurity": 2,
   "quantum-computing": 1,
-  "blockchain": 1,
-  "game-design": 1,
   "microsoft": 1,
-  "google": 1,
-  "entrepreneurship": 2
+  "game-design": 1
 }
