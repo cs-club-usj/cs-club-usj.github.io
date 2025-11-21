@@ -16,7 +16,7 @@ const MainCard = async ({
   event: CoreContent<Event>
   isLandscape?: boolean
 }) => {
-  const { flyer, slug, title, date, location, speaker, upcoming, more } = event
+  const { flyer, slug, title, date, location, speaker, upcoming, gallery, more } = event
 
   const filePath = path.join(process.cwd(), 'public', flyer)
   const buffer = fs.readFileSync(filePath)
@@ -101,13 +101,21 @@ const MainCard = async ({
             >
               <Arrow direction="right">Read more</Arrow>
             </Link>
-            {slug && !upcoming && (
+            {slug && !upcoming && gallery && (
               <Link
                 href={`/events/${slug}`}
                 className="text-base font-medium leading-6 text-primary-600 transition-colors hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600"
                 aria-label={`Link to ${title}`}
               >
                 <Arrow direction="right">View gallery</Arrow>
+              </Link>
+            )}
+            {slug && !upcoming && !gallery && (
+              <Link
+                href={`/events/${slug}`}
+                className="text-base font-medium leading-6 text-primary-600 transition-colors hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600"
+                aria-label={`Link to ${title}`}
+              >
               </Link>
             )}
           </div>

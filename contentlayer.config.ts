@@ -105,6 +105,7 @@ export const Event = defineDocumentType(() => ({
     location: { type: 'string', required: true },
     speaker: { type: 'string', required: false },
     upcoming: { type: 'boolean', required: false, default: false },
+    gallery: { type: 'boolean', required: false, default: true },
     more: { type: 'string', required: true },
   },
   computedFields: {

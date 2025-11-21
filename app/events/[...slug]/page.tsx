@@ -19,20 +19,27 @@ import Arrow from '@/components/Arrow'
 // }
 
 export const generateStaticParams = async () => {
-  return allEvents.map((p) => ({ slug: p.slug.split('/').map((name) => decodeURI(name)) }))
+  return allEvents
+    .filter((p) => p.gallery !== false)
+    .map((p) => ({ slug: p.slug.split('/').map((name) => decodeURI(name)) }))
 }
 
 export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
   const params = await props.params
   const slug = decodeURI(params.slug.join('/'))
 
-  const sortedCoreContents = allCoreContent(sortPosts(allEvents))
+  const galleryEvents = allEvents.filter((e) => e.gallery !== false && !e.upcoming)
+  const sortedCoreContents = allCoreContent(sortPosts(galleryEvents))
   const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug)
   if (postIndex === -1) {
     return notFound()
   }
 
   const event = allEvents.find((p) => p.slug === slug) as Event
+
+  if (!event.gallery) {
+    return notFound()
+  }
 
   const prev = postIndex > 0 ? sortedCoreContents[postIndex - 1] : null
   const next = postIndex + 1 < sortedCoreContents.length ? sortedCoreContents[postIndex + 1] : null
