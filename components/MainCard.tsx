@@ -115,8 +115,7 @@ const MainCard = async ({
                 href={`/events/${slug}`}
                 className="text-base font-medium leading-6 text-primary-600 transition-colors hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600"
                 aria-label={`Link to ${title}`}
-              >
-              </Link>
+              ></Link>
             )}
           </div>
         </div>

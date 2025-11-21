@@ -72,11 +72,6 @@ const EventsCard = async ({
             ) : (
               title
             )}
-            {upcoming && (
-              <span className="w-fit rounded-md bg-primary-500 px-2 py-1 text-sm font-semibold text-white">
-                Upcoming
-              </span>
-            )}
           </h2>
           <div className="flex flex-grow flex-col items-start justify-center gap-2 py-4 text-sm">
             <p className="flex flex-row items-center gap-2 whitespace-pre-line">
@@ -115,8 +110,7 @@ const EventsCard = async ({
                 href={`/events/${slug}`}
                 className="text-base font-medium leading-6 text-primary-600 transition-colors hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600"
                 aria-label={`Link to ${title}`}
-              >
-              </Link>
+              ></Link>
             )}
           </div>
         </div>
