@@ -1,5 +1,6 @@
 import Link from '@/components/Link'
 import StatCard from '@/components/StatCard'
+import siteMetadata from '@/data/siteMetadata'
 import { genPageMetadata } from 'app/seo'
 import { FaInfinity } from 'react-icons/fa6'
 import { GoGoal } from 'react-icons/go'
@@ -58,7 +59,7 @@ export default function About() {
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
-            href="https://forms.office.com/Pages/ResponsePage.aspx?id=NGnZKuVDwkGXYfM1_iFMw3XHbG_Qm39JsdCpCi0bIXpUQkFLM0ZMVDRXMEE2RENPRFlUQlJXWUpRNi4u&origin=Invitation&channel=0"
+            href={siteMetadata.registrationLink}
             target="_blank"
             className="flex w-fit items-center justify-center rounded-md bg-primary-600 px-6 py-4 font-semibold text-white transition-colors hover:bg-primary-700"
           >

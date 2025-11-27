@@ -11,8 +11,6 @@ import Arrow from '@/components/Arrow'
 const MAX_BLOG_DISPLAY = 5
 const MAX_EVENTS_DISPLAY = 5
 
-const REGISTRATION_LINK = 'https://forms.office.com/r/TcUmSVLWbu'
-
 export default function Home({ posts, images }) {
   const events = allCoreContent(sortPosts(allEvents, 'date'))
 
@@ -24,7 +22,7 @@ export default function Home({ posts, images }) {
             Empowering Tech Leaders of Tomorrow
           </h1>
           <Link
-            href={REGISTRATION_LINK}
+            href={siteMetadata.registrationLink}
             className="flex w-fit items-center justify-center rounded-md bg-primary-600 p-4 font-semibold text-white transition-colors hover:bg-primary-700"
           >
             Register Today!

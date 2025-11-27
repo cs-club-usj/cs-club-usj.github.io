@@ -13,6 +13,7 @@ const siteMetadata = {
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/club/banner.png`,
   email: 'cs.club.usj@gmail.com',
+  registrationLink: 'https://tinyurl.com/csc-usj-sve',
   whatsapp: 'https://chat.whatsapp.com/Ls5cFj9KQSQFiPLxYVnTUm', // community group link
   instagram: 'cs.club.usj', // use handle without '@'
   linkedin: 'cs-club-usj', // use handle and not company name
