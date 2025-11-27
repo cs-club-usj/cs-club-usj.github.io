@@ -9,15 +9,12 @@ import { getPlaiceholder } from 'plaiceholder'
 export default async function Page() {
   const images = [
     '/static/images/events/csrp25/IMG_0047.JPG',
-    '/static/images/events/ai-talk-monty/IMG_8635.JPG',
+    '/static/images/events/cybersecurity-workshop-2/0030.jpg',
+    '/static/images/events/cybersecurity-workshop-1/IMG_0022.jpg',
     '/static/images/events/ai-talk-monty/IMG_8648.JPG',
-    '/static/images/events/ai-talk-monty/IMG_8652.JPG',
     '/static/images/events/day-in-the-life-murex/IMG_8622.jpg',
-    '/static/images/events/day-in-the-life-murex/IMG_8629.jpg',
-    '/static/images/events/software-vs-data-engineering/IMG_8615.jpg',
-    '/static/images/events/software-vs-data-engineering/IMG_8621.jpg',
     '/static/images/events/game-design/image7.jpeg',
-    '/static/images/events/game-design/image6.jpeg',
+    '/static/images/events/software-vs-data-engineering/IMG_8615.jpg',
   ]
 
   const imagesWithBlur = await Promise.all(
