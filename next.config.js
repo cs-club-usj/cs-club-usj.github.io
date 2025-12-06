@@ -100,6 +100,9 @@ module.exports = () => {
           as: '*.js',
         },
       },
+      resolveAlias: {
+        'contentlayer/generated': './.contentlayer/generated',
+      },
     },
   })
 }
