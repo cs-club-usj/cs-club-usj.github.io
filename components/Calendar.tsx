@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from './Link'
-import { ChevronLeft, ChevronRight, CalendarDays, MapPin, User } from 'lucide-react'
+import { ChevronLeft, ChevronRight, CalendarDays, MapPin, User, Info } from 'lucide-react'
 import Arrow from './Arrow'
 
 interface CalendarEvent {
@@ -118,6 +118,9 @@ export default function Calendar({ events }: CalendarProps) {
     calendarDays.push(day)
   }
 
+  const upcomingCount = eventsThisMonth.filter(e => e.upcoming).length
+  const totalCount = eventsThisMonth.length
+
   return (
     <div className="flex flex-col gap-6 lg:flex-row">
       <div className="w-full lg:w-2/3">
@@ -125,6 +128,15 @@ export default function Calendar({ events }: CalendarProps) {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
             {MONTHS[currentMonth]} {currentYear}
           </h2>
+            <p className="text-gray-600 dark:text-gray-400">
+            {totalCount === 0
+              ? '0 events'
+              : upcomingCount === totalCount
+              ? `${upcomingCount} upcoming ${upcomingCount === 1 ? 'event' : 'events'}`
+              : upcomingCount > 0
+              ? `${totalCount} ${totalCount === 1 ? 'event' : 'events'}, ${upcomingCount} upcoming`
+              : `${totalCount} ${totalCount === 1 ? 'event' : 'events'}`}
+            </p>
           <div className="flex items-center gap-2">
             <button
               onClick={goToToday}
@@ -223,11 +235,13 @@ export default function Calendar({ events }: CalendarProps) {
 
       <div className="w-full lg:w-1/3">
         <div className="rounded-lg border-2 border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
-          <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Event Details
-          </h3>
           {selectedEvent ? (
             <div className="space-y-4">
+              {selectedEvent.upcoming && (
+                <span className="inline-block rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800 dark:bg-green-900/50 dark:text-green-300">
+                  Upcoming
+                </span>
+              )}
               <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100">
                 {selectedEvent.title}
               </h4>
@@ -252,11 +266,6 @@ export default function Calendar({ events }: CalendarProps) {
                   </p>
                 )}
               </div>
-              {selectedEvent.upcoming && (
-                <span className="inline-block rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800 dark:bg-green-900/50 dark:text-green-300">
-                  Upcoming
-                </span>
-              )}
               <div className="mt-auto flex flex-col gap-2">
                 <Link
                   href={`/blog/${selectedEvent.more}`}
@@ -275,8 +284,9 @@ export default function Calendar({ events }: CalendarProps) {
               </div>
             </div>
           ) : (
-            <p className="text-gray-500 dark:text-gray-400">
-              Click on an event in the calendar to see its details.
+            <p className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+              <Info className="h-4 w-4 shrink-0" />
+              <span>Click on an event in the calendar to see its details.</span>
             </p>
           )}
         </div>
