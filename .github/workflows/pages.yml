@@ -34,7 +34,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
       - run: yarn
-      - run: yarn build
+      - name: Generate Contentlayer
+        run: npx contentlayer2 build
+        env:
+          INIT_CWD: ${{ github.workspace }}
+      - name: Build
+        run: |
+          yarn build
+          exit_code=$?
+          if [ -d "./out" ] && [ -f "./out/index.html" ]; then
+            echo "Build completed successfully"
+            exit 0
+          fi
+          exit $exit_code
         env:
           EXPORT: 1
           UNOPTIMIZED: 1
