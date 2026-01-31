@@ -83,9 +83,9 @@ export default async function Page() {
                 >
                   <div className="relative rounded-md border border-gray-200 p-6 transition-colors hover:bg-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
                     {isPopular && (
-                        <div className="absolute -right-2 -top-2 flex items-center gap-1 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 px-3 py-1 text-sm font-bold text-white">
-                          Popular
-                        </div>
+                      <div className="absolute -right-2 -top-2 flex items-center gap-1 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 px-3 py-1 text-sm font-bold text-white">
+                        Popular
+                      </div>
                     )}
                     <div className="mb-4 flex flex-col items-center justify-between">
                       <div className="mr-3 flex items-center text-sm font-medium uppercase text-primary-600 dark:text-primary-500">
