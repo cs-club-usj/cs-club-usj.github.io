@@ -128,7 +128,7 @@ export default function Calendar({ events }: CalendarProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={goToToday}
-              className="rounded-md bg-primary-500 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-primary-600"
+              className="rounded-md bg-primary-600 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-primary-700"
             >
               Today
             </button>
@@ -177,7 +177,7 @@ export default function Calendar({ events }: CalendarProps) {
                   <div
                     className={`mb-1 flex h-7 w-7 items-center justify-center rounded-full text-sm font-medium ${
                       isToday(day)
-                        ? 'bg-primary-500 text-white'
+                        ? 'bg-primary-600 text-white'
                         : isPast(day)
                           ? 'text-gray-400 dark:text-gray-600'
                           : 'text-gray-700 dark:text-gray-300'
