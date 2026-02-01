@@ -2,6 +2,7 @@ import EventsCard from '@/components/EventsCard'
 import { genPageMetadata } from 'app/seo'
 import { allEvents } from 'contentlayer/generated'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
+import ViewToggle from '@/components/ViewToggle'
 
 export const metadata = genPageMetadata({ title: 'Events' })
 
@@ -11,6 +12,10 @@ export default function Events() {
 
   return (
     <>
+      <div className="flex justify-end pb-4 pt-6">
+        <ViewToggle activeView="grid" />
+      </div>
+
       {upcoming.length === 0 && past.length === 0 && (
         <div className="divide-y divide-gray-200 dark:divide-gray-700">
           <div className="space-y-2 pb-8 pt-6 md:space-y-5">
