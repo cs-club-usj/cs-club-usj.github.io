@@ -7,7 +7,7 @@ const siteMetadata = {
   descriptionEvents: 'Join us for exciting events, workshops, and tech talks',
   descriptionLatest: 'Updates on events, tech news, and more',
   language: 'en-us',
-  theme: 'light', // system, dark or light
+  theme: 'system', // system, dark or light
   siteUrl: 'https://cs-club-usj.github.io',
   siteRepo: 'https://github.com/cs-club-usj/cs-club-usj.github.io',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
