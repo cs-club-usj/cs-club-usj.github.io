@@ -17,10 +17,6 @@ export default async function Page() {
       <div className="relative overflow-hidden">
         <div className="relative mx-auto mb-10 max-w-7xl">
           <div className="text-center">
-            <h1 className="mb-6 text-4xl font-bold lg:text-6xl">Tags</h1>
-            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-900 dark:text-gray-100">
-              Click on any tag to explore related posts
-            </p>
           </div>
         </div>
       </div>
