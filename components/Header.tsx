@@ -7,7 +7,7 @@ import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 import Image from './Image'
 
-const SVE_LINK = 'https://usj.edu.lb/sve-new/'
+const SVE_LINK = 'https://usj.edu.lb/sve'
 
 const Header = () => {
   let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10'
@@ -29,7 +29,7 @@ const Header = () => {
               width={180}
               height={128}
               className="block object-contain dark:hidden"
-            />
+              />
             <Image
               src={'/static/images/sve/sve-dark.png'}
               alt={'SVE Logo Dark'}
