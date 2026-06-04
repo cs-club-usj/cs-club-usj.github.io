@@ -14,6 +14,8 @@ import {
   Mastodon,
 } from './icons'
 
+import { Link } from 'lucide-react'
+
 const components = {
   email: Email,
   whatsapp: Whatsapp,
@@ -28,6 +30,7 @@ const components = {
   github: Github,
   medium: Medium,
   mastodon: Mastodon,
+  website: Link,
 }
 
 type SocialIconProps = {
@@ -54,7 +57,7 @@ const SocialIcon = ({ kind, href, size = 8 }: SocialIconProps) => {
     >
       <span className="sr-only">{kind}</span>
       <SocialSvg
-        className={`fill-current text-gray-900 transition-colors hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-500 h-${size} w-${size}`}
+        className={`${kind !== 'website' ? 'fill-current' : ''} text-gray-900 transition-colors hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-500 h-${size} w-${size}`}
       />
     </a>
   )

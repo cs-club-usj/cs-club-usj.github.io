@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default async function AuthorLayout({ content, role }: Props) {
-  const { name, avatar, email, linkedin, github, slug } = content
+  const { name, avatar, email, linkedin, github, slug, website } = content
 
   const filePath = path.join(process.cwd(), 'public', avatar!)
   const buffer = fs.readFileSync(filePath)
@@ -42,6 +42,7 @@ export default async function AuthorLayout({ content, role }: Props) {
         <SocialIcon kind="email" href={`mailto:${email}`} />
         <SocialIcon kind="linkedin" href={linkedin} />
         <SocialIcon kind="github" href={github} />
+        <SocialIcon kind="website" href={website} />
       </div>
     </div>
   )

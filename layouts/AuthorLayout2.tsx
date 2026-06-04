@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function AuthorLayout2({ children, content, next, prev }: Props) {
-  const { name, avatar, email, linkedin, github } = content
+  const { name, avatar, email, linkedin, github, website } = content
 
   return (
     <>
@@ -38,6 +38,7 @@ export default function AuthorLayout2({ children, content, next, prev }: Props) 
               <SocialIcon kind="email" href={`mailto:${email}`} />
               <SocialIcon kind="linkedin" href={linkedin} />
               <SocialIcon kind="github" href={github} />
+              <SocialIcon kind="website" href={website} />
             </div>
             {(next || prev) && (
               <div className="w-3/4">
