@@ -1,7 +1,7 @@
 import Calendar from '@/components/Calendar'
 import { genPageMetadata } from 'app/seo'
 import { allEvents } from 'contentlayer/generated'
-import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
+import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 import ViewToggle from '@/components/ViewToggle'
 
 export const metadata = genPageMetadata({ title: 'Calendar' })

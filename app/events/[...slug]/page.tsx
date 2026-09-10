@@ -1,7 +1,7 @@
 import 'css/prism.css'
 import 'katex/dist/katex.css'
 
-import { sortPosts, allCoreContent } from 'pliny/utils/contentlayer'
+import { sortPosts, allCoreContent } from 'pliny/utils/contentlayer.js'
 import { allEvents } from 'contentlayer/generated'
 import type { Event } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
