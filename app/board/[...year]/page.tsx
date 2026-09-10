@@ -1,6 +1,6 @@
 import { Authors, Boards, allAuthors, allBoards } from 'contentlayer/generated'
 import AuthorLayout from '@/layouts/AuthorLayout'
-import { coreContent } from 'pliny/utils/contentlayer'
+import { coreContent } from 'pliny/utils/contentlayer.js'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -40,13 +40,11 @@ export default async function Page(props: { params: Promise<{ year: string }> })
     return p.year === year[0]
   }) as Boards
   const members = resolveBoardMembers(board)
-
   const president = members.find((p) => p.role === 'President')
   const vp = members.find((p) => p.role === 'Vice-President')
   const treasurer = members.find((p) => p.role === 'Treasurer')
   const secretary = members.find((p) => p.role === 'Secretary')
-  const socialMedia = members.find((p) => p.role === 'Content Creator')
-
+  const socialMedia = members.find((p) => p.role.trim() === 'Content Creator' || p.role.trim() === 'Social Media Manager')
   const rest = members.filter((p) => p.role === 'Board Member')
 
   return (

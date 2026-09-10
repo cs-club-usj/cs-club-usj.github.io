@@ -1,12 +1,12 @@
 import { Authors, Boards, allAuthors, allBoards } from 'contentlayer/generated'
 import AuthorLayout from '@/layouts/AuthorLayout'
-import { coreContent } from 'pliny/utils/contentlayer'
+import { coreContent } from 'pliny/utils/contentlayer.js'
 import { genPageMetadata } from 'app/seo'
 import Link from 'next/link'
 
 export const metadata = genPageMetadata({ title: 'Board' })
 
-const CURRENT_YEAR = '2025-2026'
+const CURRENT_YEAR = '2026-2027'
 
 export const generateStaticParams = async () => {
   return allBoards.map((b) => ({ year: [b.year] }))
@@ -20,7 +20,7 @@ function resolveBoardMembers(board: Boards) {
       )
       return {
         ...author,
-        role: m.role,
+        role: m.role.trim(),
       }
     })
     .filter(Boolean) as (Authors & { role: string })[]
@@ -36,7 +36,7 @@ export default async function Page() {
   const vp = members.find((p) => p.role === 'Vice-President')
   const treasurer = members.find((p) => p.role === 'Treasurer')
   const secretary = members.find((p) => p.role === 'Secretary')
-  const socialMedia = members.find((p) => p.role === 'Content Creator')
+  const socialMedia = members.find((p) => p.role.trim() === 'Content Creator' || p.role.trim() === 'Social Media Manager')
 
   const rest = members.filter((p) => p.role === 'Board Member')
 

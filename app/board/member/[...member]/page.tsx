@@ -1,7 +1,7 @@
 import { Authors, allAuthors, allBoards, Boards } from 'contentlayer/generated'
-import { MDXLayoutRenderer } from 'pliny/mdx-components'
+import { MDXLayoutRenderer } from 'pliny/mdx-components.js'
 import AuthorLayout2 from '@/layouts/AuthorLayout2'
-import { coreContent } from 'pliny/utils/contentlayer'
+import { coreContent } from 'pliny/utils/contentlayer.js'
 import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 
@@ -54,7 +54,7 @@ export default async function Page(props: { params: Promise<{ member: string[] }
     board.members.map((m) => allAuthors.find((a) => a.slug === m.name)).filter(Boolean) as Authors[]
 
   const candidateBoards = allBoards.filter((b) => b.members.some((m) => m.name === author.slug))
-  const chosenBoard = candidateBoards.find((b) => b.year === '2025-2026') ?? candidateBoards[0]
+  const chosenBoard = candidateBoards.find((b) => b.year === '2026-2027') ?? candidateBoards[0]
 
   const membersList = chosenBoard ? resolveBoardMembers(chosenBoard) : allAuthors
   const index = membersList.findIndex((a) => a.slug === author.slug)
