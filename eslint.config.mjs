@@ -12,7 +12,8 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 })
 
-export default [
+/** @type {any[]} */
+const eslintConfig = [
   {
     ignores: [],
   },
@@ -68,3 +69,5 @@ export default [
     },
   },
 ]
+
+export default eslintConfig

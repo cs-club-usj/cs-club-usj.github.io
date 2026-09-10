@@ -15,24 +15,25 @@
     "composite": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "ignoreDeprecations": "6.0",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
     "paths": {
       "@/components/*": [
-        "components/*"
+        "./components/*"
       ],
       "@/data/*": [
-        "data/*"
+        "./data/*"
       ],
       "@/layouts/*": [
-        "layouts/*"
+        "./layouts/*"
       ],
       "@/css/*": [
-        "css/*"
+        "./css/*"
+      ],
+      "app/*": [
+        "./app/*"
       ],
       "contentlayer/generated": [
         "./.contentlayer/generated"
