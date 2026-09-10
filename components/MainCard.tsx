@@ -2,7 +2,7 @@ import { Event } from 'contentlayer/generated'
 import Image from './Image'
 import Link from './Link'
 import { CalendarDays, MapPin, User } from 'lucide-react'
-import { CoreContent } from 'pliny/utils/contentlayer'
+import { CoreContent } from 'pliny/utils/contentlayer.js'
 
 import fs from 'fs'
 import path from 'path'
